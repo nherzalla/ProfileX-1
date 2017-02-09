@@ -24,4 +24,5 @@ var HomeComponent = (function () {
     return HomeComponent;
 }());
 exports.HomeComponent = HomeComponent;
+//test 
 //# sourceMappingURL=home.component.js.map
