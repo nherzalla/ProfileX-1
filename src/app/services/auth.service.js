@@ -13,11 +13,19 @@ var core_1 = require('@angular/core');
 var angular2_jwt_1 = require('angular2-jwt');
 var Auth = (function () {
     function Auth() {
+        var _this = this;
         // Configure Auth0
         this.lock = new Auth0Lock('hDIOjnQhv5O1SW3xdwLQ3O102oDRydKZ', 'myfaceprofile.auth0.com', {});
         // Add callback for lock `authenticated` event
         this.lock.on("authenticated", function (authResult) {
-            localStorage.setItem('id_token', authResult.idToken);
+            _this.lock.getUserInfo(authResult.accessToken, function (error, profile) {
+                if (error) {
+                    throw new Error(error);
+                }
+                console.log(profile);
+                localStorage.setItem('id_token', authResult.idToken);
+                localStorage.setItem('profile', JSON.stringify(profile));
+            });
         });
     }
     Auth.prototype.login = function () {
@@ -32,6 +40,7 @@ var Auth = (function () {
     Auth.prototype.logout = function () {
         // Remove token from localStorage
         localStorage.removeItem('id_token');
+        localStorage.removeItem('profile');
     };
     Auth = __decorate([
         core_1.Injectable(), 
