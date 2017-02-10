@@ -6,6 +6,7 @@ import {routing,appRoutingProviders} from './app.routing';
 import { AppComponent }  from './app.component';
 import { AUTH_PROVIDERS }      from 'angular2-jwt';
 import {Auth} from './services/auth.service';
+import {AuthGuard} from './auth.guard';
 
 
 
@@ -21,7 +22,8 @@ import {ProfileComponent} from './components/profile/profile.component';
   providers:[
     appRoutingProviders,
     AUTH_PROVIDERS,
-    Auth
+    Auth,
+    AuthGuard
   ]
 })
 export class AppModule { }
