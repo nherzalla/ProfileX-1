@@ -9,7 +9,10 @@ declare var Auth0Lock: any;
 @Injectable()
 export class Auth {
   // Configure Auth0
-  lock = new Auth0Lock('hDIOjnQhv5O1SW3xdwLQ3O102oDRydKZ', 'myfaceprofile.auth0.com', {});
+  
+  lock = new Auth0Lock('hDIOjnQhv5O1SW3xdwLQ3O102oDRydKZ', 'myfaceprofile.auth0.com', { auth: {
+    params: {scope: 'openid email user_metadata app_metadata picture'},
+  }});
 
   constructor() {
     // Add callback for lock `authenticated` event
