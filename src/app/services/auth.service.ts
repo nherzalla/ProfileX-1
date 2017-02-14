@@ -22,6 +22,7 @@ export class Auth {
             throw new Error(error);
           }
           console.log(profile);
+          console.log(authResult.idToken);
           localStorage.setItem('id_token', authResult.idToken);
           localStorage.setItem('profile', JSON.stringify(profile));
       });
