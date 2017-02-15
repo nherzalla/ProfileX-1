@@ -1,5 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpModule} from '@angular/http';
 
 import {routing,appRoutingProviders} from './app.routing';
 
@@ -7,6 +8,9 @@ import { AppComponent }  from './app.component';
 import { AUTH_PROVIDERS }      from 'angular2-jwt';
 import {Auth} from './services/auth.service';
 import {AuthGuard} from './auth.guard';
+import {profileService} from './services/profile.service';
+
+
 
 
 
@@ -16,14 +20,17 @@ import {ProfileComponent} from './components/profile/profile.component';
 
 
 @NgModule({
-  imports:      [ BrowserModule,routing ],
+  imports:      [ BrowserModule,routing,HttpModule ],
   declarations: [ AppComponent,HomeComponent,ProfileComponent ],
   bootstrap:    [ AppComponent ],
   providers:[
     appRoutingProviders,
     AUTH_PROVIDERS,
     Auth,
-    AuthGuard
+    AuthGuard,
+    HttpModule,
+    profileService
+    
   ]
 })
 export class AppModule { }

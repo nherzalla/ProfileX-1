@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_1 = require('./services/auth.service');
+var profile_service_1 = require('./services/profile.service');
 var AppComponent = (function () {
-    function AppComponent(auth) {
+    function AppComponent(auth, profileservice) {
         this.auth = auth;
+        this.profileservice = profileservice;
     }
     AppComponent = __decorate([
         core_1.Component({
@@ -20,7 +22,7 @@ var AppComponent = (function () {
             selector: 'my-app',
             templateUrl: "app.component.html",
         }), 
-        __metadata('design:paramtypes', [auth_service_1.Auth])
+        __metadata('design:paramtypes', [auth_service_1.Auth, profile_service_1.profileService])
     ], AppComponent);
     return AppComponent;
 }());

@@ -10,10 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../../services/auth.service');
+var profile_service_1 = require('../../services/profile.service');
 var ProfileComponent = (function () {
-    function ProfileComponent(auth) {
+    function ProfileComponent(auth, profileservice) {
         this.auth = auth;
+        this.profileservice = profileservice;
         this.profile = JSON.parse(localStorage.getItem('profile'));
+        console.log(profileservice.getProfile());
         /* if(auth.authenticated())
          {
              console.log(localStorage.getItem('profile'));
@@ -25,7 +28,7 @@ var ProfileComponent = (function () {
             selector: 'profile',
             templateUrl: "profile.component.html",
         }), 
-        __metadata('design:paramtypes', [auth_service_1.Auth])
+        __metadata('design:paramtypes', [auth_service_1.Auth, profile_service_1.profileService])
     ], ProfileComponent);
     return ProfileComponent;
 }());
