@@ -12,6 +12,10 @@ var core_1 = require('@angular/core');
 var auth_service_1 = require('../../services/auth.service');
 var HomeComponent = (function () {
     function HomeComponent(auth) {
+        // if(auth.authenticated())
+        // {
+        //   console.log(localStorage.getItem('profile'));
+        //}  
         this.auth = auth;
     }
     HomeComponent = __decorate([

@@ -8,6 +8,10 @@ import {Auth} from '../../services/auth.service';
 })
 export class HomeComponent  {  constructor(private auth:Auth)
   {
-
+     // if(auth.authenticated())
+       // {
+         //   console.log(localStorage.getItem('profile'));
+        //}  
+      
   } 
 }

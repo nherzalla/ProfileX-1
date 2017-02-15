@@ -14,6 +14,10 @@ var ProfileComponent = (function () {
     function ProfileComponent(auth) {
         this.auth = auth;
         this.profile = JSON.parse(localStorage.getItem('profile'));
+        /* if(auth.authenticated())
+         {
+             console.log(localStorage.getItem('profile'));
+         }  */
     }
     ProfileComponent = __decorate([
         core_1.Component({
