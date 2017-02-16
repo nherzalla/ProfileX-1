@@ -17,7 +17,19 @@ var Auth = (function () {
         // Configure Auth0
         this.lock = new Auth0Lock('hDIOjnQhv5O1SW3xdwLQ3O102oDRydKZ', 'myfaceprofile.auth0.com', { auth: {
                 params: { scope: 'openid email user_metadata app_metadata picture' },
-            } });
+            },
+            allowForgotPassword: true,
+            additionalSignUpFields: [
+                {
+                    name: "firstname",
+                    placeholder: "Enter your first name"
+                },
+                {
+                    name: "lastname",
+                    placeholder: "Enter your last name"
+                }
+            ]
+        });
         // Add callback for lock `authenticated` event
         this.lock.on("authenticated", function (authResult) {
             _this.lock.getUserInfo(authResult.accessToken, function (error, profile) {

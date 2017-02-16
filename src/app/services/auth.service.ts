@@ -10,9 +10,23 @@ declare var Auth0Lock: any;
 export class Auth {
   // Configure Auth0
   
-  lock = new Auth0Lock('hDIOjnQhv5O1SW3xdwLQ3O102oDRydKZ', 'myfaceprofile.auth0.com', { auth: {
-    params: {scope: 'openid email user_metadata app_metadata picture'},
-  }});
+  lock = new Auth0Lock('hDIOjnQhv5O1SW3xdwLQ3O102oDRydKZ', 'myfaceprofile.auth0.com', 
+  { auth: 
+    {
+      params: {scope: 'openid email user_metadata app_metadata picture'},
+    },
+     allowForgotPassword: true,
+     additionalSignUpFields: [
+        {
+            name: "firstname",
+            placeholder:"Enter your first name"
+        },
+        {
+          name: "lastname",
+          placeholder : "Enter your last name"
+        }
+      ]
+});
 
   constructor() {
     // Add callback for lock `authenticated` event
