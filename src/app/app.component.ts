@@ -11,6 +11,14 @@ export class AppComponent  {
   
   constructor(private auth:Auth,private profileservice:profileService)
   {
-
+        
+      if(auth.authenticated())
+      {
+        console.log("Authnticated.....");
+      }
+      else
+      {
+        console.log("Not Authnticated.....");
+      }
   }
 }

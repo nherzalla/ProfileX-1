@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var angular2_jwt_1 = require('angular2-jwt');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/catch');
 require('rxjs/add/operator/toPromise');
 var profileService = (function () {
     function profileService(http, authHttp) {
@@ -22,9 +24,22 @@ var profileService = (function () {
         return this.authHttp
             .get(this.profileUrl)
             .toPromise()
-            .then(function (response) { return response.json(); })
+            .then(function (response) { return response.text; })
             .catch(this.handleError);
     };
+    profileService.prototype.verifyProfile = function () {
+        return this.authHttp
+            .get(this.profileUrl + "/profileverify")
+            .map(this.extractData)
+            .catch(this.handleError);
+        // .subscribe(data=> console.log('success',data),
+        // err=> console.log('error', err)
+        //)
+    };
+    profileService.prototype.extractData = function (res) {
+        return res || {};
+    };
+    // private handleError(error: any): Promise<any> 
     profileService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);

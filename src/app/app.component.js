@@ -15,6 +15,12 @@ var AppComponent = (function () {
     function AppComponent(auth, profileservice) {
         this.auth = auth;
         this.profileservice = profileservice;
+        if (auth.authenticated()) {
+            console.log("Authnticated.....");
+        }
+        else {
+            console.log("Not Authnticated.....");
+        }
     }
     AppComponent = __decorate([
         core_1.Component({

@@ -44,8 +44,15 @@ var Auth = (function () {
         });
     }
     Auth.prototype.login = function () {
-        // Call the show method to display the widget.
-        this.lock.show();
+        this.lock.show(function (error, profile, id_token) {
+            if (error) {
+                console.log(error);
+            }
+            // We get a profile object for the user from Auth0
+            localStorage.setItem('profile', JSON.stringify(profile));
+            // We also get the user's JWT
+            localStorage.setItem('id_token', id_token);
+        });
     };
     Auth.prototype.authenticated = function () {
         // Check if there's an unexpired JWT

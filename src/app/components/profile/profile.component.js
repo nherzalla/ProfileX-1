@@ -13,21 +13,28 @@ var auth_service_1 = require('../../services/auth.service');
 var profile_service_1 = require('../../services/profile.service');
 var ProfileComponent = (function () {
     function ProfileComponent(auth, profileservice) {
+        var _this = this;
         this.auth = auth;
         this.profileservice = profileservice;
         this.profile = JSON.parse(localStorage.getItem('profile'));
-        if (auth.authenticated()) {
-            console.log("Authnticated.....");
-        }
-        else {
-            console.log("Not Authnticated.....");
-        }
+        this.profileservice.verifyProfile().subscribe(function (data) { return _this.userprofile = data._body; });
+        console.log(this.userprofile);
+        /*  if(auth.authenticated())
+            {
+              console.log("Authnticated.....");
+            }
+            else
+            {
+              console.log("Not Authnticated.....");
+            }*/
         // console.log(profileservice.getProfile());
         /* if(auth.authenticated())
          {
              console.log(localStorage.getItem('profile'));
          }  */
     }
+    ProfileComponent.prototype.ngOnInit = function () {
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

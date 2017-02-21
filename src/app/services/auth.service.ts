@@ -16,6 +16,7 @@ export class Auth {
       params: {scope: 'openid email user_metadata app_metadata picture'},
     },
      allowForgotPassword: true,
+    
      additionalSignUpFields: [
         {
             name: "firstname",
@@ -28,7 +29,8 @@ export class Auth {
       ]
 });
 
-  constructor() {
+  constructor() 
+  {
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult:any) => 
     {
@@ -48,11 +50,20 @@ export class Auth {
   }
 
   public login() {
-    // Call the show method to display the widget.
-    this.lock.show();
+
+    this.lock.show((error: string, profile: Object, id_token: string) => {
+      if (error) {
+        console.log(error);
+      }
+      // We get a profile object for the user from Auth0
+      localStorage.setItem('profile', JSON.stringify(profile));
+      // We also get the user's JWT
+      localStorage.setItem('id_token', id_token);
+      });
   }
 
   public authenticated() {
+   
     // Check if there's an unexpired JWT
     // This searches for an item in localStorage with key == 'id_token'
     return tokenNotExpired();
