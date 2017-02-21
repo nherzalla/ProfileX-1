@@ -14,7 +14,16 @@ export class ProfileComponent  {
         
         this.profile = JSON.parse(localStorage.getItem('profile'));
         
-        console.log(profileservice.getProfile());
+    if(auth.authenticated())
+      {
+        console.log("Authnticated.....");
+      }
+      else
+      {
+        console.log("Not Authnticated.....");
+      }
+
+       // console.log(profileservice.getProfile());
        /* if(auth.authenticated())
         {
             console.log(localStorage.getItem('profile'));
