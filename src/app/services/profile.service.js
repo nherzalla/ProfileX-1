@@ -27,6 +27,13 @@ var profileService = (function () {
             .then(function (response) { return response.text; })
             .catch(this.handleError);
     };
+    profileService.prototype.verifyProfilePromise = function () {
+        return this.authHttp
+            .get(this.profileUrl + "/profileverify")
+            .toPromise()
+            .then(this.extractDataPromise)
+            .catch(this.handleError);
+    };
     profileService.prototype.verifyProfile = function () {
         return this.authHttp
             .get(this.profileUrl + "/profileverify")
@@ -35,6 +42,10 @@ var profileService = (function () {
         // .subscribe(data=> console.log('success',data),
         // err=> console.log('error', err)
         //)
+    };
+    profileService.prototype.extractDataPromise = function (res) {
+        var body = res.json();
+        return body || [];
     };
     profileService.prototype.extractData = function (res) {
         return res || {};

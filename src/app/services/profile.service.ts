@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 
 
 import 'rxjs/add/operator/toPromise';
+import {userprofile} from '../models/userprofile.model';
 
 @Injectable()
 
@@ -29,6 +30,14 @@ export class profileService{
         .catch(this.handleError);
     }
 
+    verifyProfilePromise()
+    {
+        return this.authHttp
+        .get(this.profileUrl + "/profileverify")
+        .toPromise()
+        .then(this.extractDataPromise)
+        .catch(this.handleError);
+    }
     verifyProfile() : Observable<any>
     {
         return this.authHttp
@@ -39,6 +48,11 @@ export class profileService{
        // err=> console.log('error', err)
         //)
         
+    }
+    private extractDataPromise(res:Response)
+    {
+        let body = res.json();
+        return body || [];
     }
     private extractData(res:Response)
     {
