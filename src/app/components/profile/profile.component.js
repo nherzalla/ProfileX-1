@@ -37,6 +37,7 @@ var ProfileComponent = (function () {
         //console.log(test);
     }
     ProfileComponent.prototype.getData = function (res) {
+        //with promise if more logic need to be done it has to be here like checking if the email is null call post new user info to the API...
         this.userprofile = class_transformer_1.plainToClass(userprofile_model_1.userprofile, res);
         console.log(this.userprofile);
     };

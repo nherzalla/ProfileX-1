@@ -53,8 +53,9 @@ export class ProfileComponent  {
     } 
     getData(res:any)
     {
+        //with promise if more logic need to be done it has to be here like checking if the email is null call post new user info to the API...
          this.userprofile = plainToClass(userprofile,res);
-        console.log(this.userprofile);
+         console.log(this.userprofile);
     }
 
     ngOnInit()
