@@ -15,12 +15,13 @@ import {profileService} from './services/profile.service';
 
 
 
+
 import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
 
 
 @NgModule({
-  imports:      [ BrowserModule,routing,HttpModule ],
+  imports:      [ BrowserModule,routing,HttpModule],
   declarations: [ AppComponent,HomeComponent,ProfileComponent ],
   bootstrap:    [ AppComponent ],
   providers:[
@@ -30,6 +31,7 @@ import {ProfileComponent} from './components/profile/profile.component';
     AuthGuard,
     HttpModule,
     profileService
+    
     
   ]
 })

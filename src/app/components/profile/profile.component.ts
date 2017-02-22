@@ -3,6 +3,8 @@ import {Auth} from '../../services/auth.service';
 import {profileService} from '../../services/profile.service';
 import {userprofile} from '../../models/userprofile.model';
 
+import {plainToClass} from 'class-transformer';
+
 
 @Component({
  moduleId : module.id,   
@@ -11,37 +13,25 @@ import {userprofile} from '../../models/userprofile.model';
 })
 export class ProfileComponent  { 
     profile:any;
-    private userprofile:userprofile[];
+    userprofile: userprofile= new userprofile();
     userz : any;
 
     constructor(private auth:Auth,private profileservice:profileService)
     {
         this.profile = JSON.parse(localStorage.getItem('profile'));
+       
+        this.profileservice.verifyProfile()
+                .map(res => res.json())
+                .map(res => plainToClass(userprofile, res))
+                .subscribe(user => {
+                    this.userprofile = user
+                    console.log(this.userprofile)
+            });
 
-        this.profileservice.verifyProfile().subscribe
-       // (data=>console.log(data._body));
-       (data=>this.userprofile = data._body)
+            console.log(this.userprofile);
 
-       console.log(this.userprofile);
-
-                    
-                
-        
-  /*  if(auth.authenticated())
-      {
-        console.log("Authnticated.....");
-      }
-      else
-      {
-        console.log("Not Authnticated.....");
-      }*/
-
-       // console.log(profileservice.getProfile());
-       /* if(auth.authenticated())
-        {
-            console.log(localStorage.getItem('profile'));
-        }  */       
     } 
+
     ngOnInit()
     {
        

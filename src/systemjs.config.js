@@ -9,7 +9,8 @@
       'npm:': 'node_modules/'
     },
     // map tells the System loader where to look for things
-    map: {
+    map: 
+    {
       // our app is within the app folder
       app: 'app',
 
@@ -26,19 +27,28 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'angular2-jwt' :    'node_modules/angular2-jwt/angular2-jwt.js'
+      'angular2-jwt' :    'node_modules/angular2-jwt/angular2-jwt.js',
+      "class-transformer": "node_modules/class-transformer"
+
     },
     // packages tells the System loader how to load when no filename and/or no extension
-    packages: {
-      app: {
+    packages: 
+    {
+      app: 
+      {
         defaultExtension: 'js'
       },
-      rxjs: {
+      rxjs: 
+      {
         defaultExtension: 'js'
       },
       'angular2-jwt' :
       {
         "defaultExtension" : 'js'
+      },
+      "class-transformer": 
+      { 
+          "main": "index.js", "defaultExtension": "js" 
       }
 
     }

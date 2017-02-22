@@ -11,27 +11,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../../services/auth.service');
 var profile_service_1 = require('../../services/profile.service');
+var userprofile_model_1 = require('../../models/userprofile.model');
+var class_transformer_1 = require('class-transformer');
 var ProfileComponent = (function () {
     function ProfileComponent(auth, profileservice) {
         var _this = this;
         this.auth = auth;
         this.profileservice = profileservice;
+        this.userprofile = new userprofile_model_1.userprofile();
         this.profile = JSON.parse(localStorage.getItem('profile'));
-        this.profileservice.verifyProfile().subscribe(function (data) { return _this.userprofile = data._body; });
+        this.profileservice.verifyProfile()
+            .map(function (res) { return res.json(); })
+            .map(function (res) { return class_transformer_1.plainToClass(userprofile_model_1.userprofile, res); })
+            .subscribe(function (user) {
+            _this.userprofile = user;
+            console.log(_this.userprofile);
+        });
         console.log(this.userprofile);
-        /*  if(auth.authenticated())
-            {
-              console.log("Authnticated.....");
-            }
-            else
-            {
-              console.log("Not Authnticated.....");
-            }*/
-        // console.log(profileservice.getProfile());
-        /* if(auth.authenticated())
-         {
-             console.log(localStorage.getItem('profile'));
-         }  */
     }
     ProfileComponent.prototype.ngOnInit = function () {
     };

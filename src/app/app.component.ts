@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Auth} from './services/auth.service';
 import {profileService} from './services/profile.service';
+ 
 
 @Component({
   moduleId : module.id,
