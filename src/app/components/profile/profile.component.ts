@@ -25,7 +25,7 @@ export class ProfileComponent  {
     {
         this.profile = JSON.parse(localStorage.getItem('profile'));
        
-        this.profileservice.verifyProfile()
+      /*  this.profileservice.verifyProfile()
                 .map(res => res.json())
                 .map(res => plainToClass(userprofile, res))
                 .subscribe(user => 
@@ -34,7 +34,8 @@ export class ProfileComponent  {
                    //console.log(this.userprofile)
                 })
             ;
-            
+            */
+
             this.profileservice.verifyProfilePromise()
             
             .then(response=>
@@ -53,6 +54,7 @@ export class ProfileComponent  {
     } 
     getData(res:any)
     {
+        console.log(res);
         //with promise if more logic need to be done it has to be here like checking if the email is null call post new user info to the API...
          this.userprofile = plainToClass(userprofile,res);
          console.log(this.userprofile);

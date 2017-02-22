@@ -21,13 +21,16 @@ var ProfileComponent = (function () {
         this.userprofile = new userprofile_model_1.userprofile();
         this.usrProfile = new userprofile_model_1.userprofile();
         this.profile = JSON.parse(localStorage.getItem('profile'));
-        this.profileservice.verifyProfile()
-            .map(function (res) { return res.json(); })
-            .map(function (res) { return class_transformer_1.plainToClass(userprofile_model_1.userprofile, res); })
-            .subscribe(function (user) {
-            _this.userprofile = user;
-            //console.log(this.userprofile)
-        });
+        /*  this.profileservice.verifyProfile()
+                  .map(res => res.json())
+                  .map(res => plainToClass(userprofile, res))
+                  .subscribe(user =>
+                  {
+                      this.userprofile = user
+                     //console.log(this.userprofile)
+                  })
+              ;
+              */
         this.profileservice.verifyProfilePromise()
             .then(function (response) {
             return _this.getData(response);
@@ -37,6 +40,7 @@ var ProfileComponent = (function () {
         //console.log(test);
     }
     ProfileComponent.prototype.getData = function (res) {
+        console.log(res);
         //with promise if more logic need to be done it has to be here like checking if the email is null call post new user info to the API...
         this.userprofile = class_transformer_1.plainToClass(userprofile_model_1.userprofile, res);
         console.log(this.userprofile);
