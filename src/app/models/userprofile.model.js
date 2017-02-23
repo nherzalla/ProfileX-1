@@ -1,9 +1,6 @@
 "use strict";
 var userprofile = (function () {
-    function userprofile(Email, firstName, lastName) {
-        this.Email = Email;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    function userprofile() {
     }
     return userprofile;
 }());

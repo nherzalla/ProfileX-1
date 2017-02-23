@@ -11,12 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var angular2_jwt_1 = require('angular2-jwt');
+var router_1 = require('@angular/router');
 var Auth = (function () {
-    function Auth() {
+    function Auth(router) {
         var _this = this;
+        this.router = router;
         // Configure Auth0
         this.lock = new Auth0Lock('hDIOjnQhv5O1SW3xdwLQ3O102oDRydKZ', 'myfaceprofile.auth0.com', { auth: {
-                params: { scope: 'openid email user_metadata app_metadata picture' },
+                params: { scope: 'openid email user_metadata app_metadata picture' }
             },
             allowForgotPassword: true,
             additionalSignUpFields: [
@@ -44,6 +46,7 @@ var Auth = (function () {
         });
     }
     Auth.prototype.login = function () {
+        var _this = this;
         this.lock.show(function (error, profile, id_token) {
             if (error) {
                 console.log(error);
@@ -52,6 +55,7 @@ var Auth = (function () {
             localStorage.setItem('profile', JSON.stringify(profile));
             // We also get the user's JWT
             localStorage.setItem('id_token', id_token);
+            _this.router.navigateByUrl('/profile');
         });
     };
     Auth.prototype.authenticated = function () {
@@ -66,7 +70,7 @@ var Auth = (function () {
     };
     Auth = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], Auth);
     return Auth;
 }());

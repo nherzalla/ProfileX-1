@@ -31,7 +31,7 @@ var profileService = (function () {
         return this.authHttp
             .get(this.profileUrl + "/profileverify")
             .toPromise()
-            .then(this.extractDataPromise)
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     profileService.prototype.verifyProfile = function () {

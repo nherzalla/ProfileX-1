@@ -12,13 +12,14 @@ var core_1 = require('@angular/core');
 var auth_service_1 = require('../../services/auth.service');
 var profile_service_1 = require('../../services/profile.service');
 var userprofile_model_1 = require('../../models/userprofile.model');
-var class_transformer_1 = require("class-transformer");
 var ProfileComponent = (function () {
     function ProfileComponent(auth, profileservice) {
         var _this = this;
         this.auth = auth;
         this.profileservice = profileservice;
         this.userprofile = new userprofile_model_1.userprofile();
+        //userprofile:userprofile[];
+        this.userprofile1 = new userprofile_model_1.userprofile();
         this.profile = JSON.parse(localStorage.getItem('profile'));
         /*    this.profileservice.verifyProfile()
                      .map(res => res.json())
@@ -34,22 +35,20 @@ var ProfileComponent = (function () {
             .then(function (response) {
             return _this.getData(response);
         });
-        // this.userprofile.Email = "testbullshit";
-        //let test = classToPlain(this.userprofile);
-        //console.log(test);
     }
     ProfileComponent.prototype.getData = function (res) {
         if (res.length == 0) {
             console.log("object is empty");
         }
         else {
-            this.userprofile = class_transformer_1.plainToClass(userprofile_model_1.userprofile, res);
+            this.userprofile = new userprofile_model_1.userprofile();
+            // this.userprofile1 = new userprofile();
+            this.userprofile.Email = res.Email;
+            this.userprofile.firstName = res.firstName;
+            this.userprofile.lastName = res.lastName;
+            //  this.userprofile1=  plainToClass(userprofile,res);
             console.log(this.userprofile);
         }
-        // console.log(res);
-        //with promise if more logic need to be done it has to be here like checking if the email is null call post new user info to the API...
-        //  this.userprofile = plainToClass(userprofile,res);
-        //    console.log(this.userprofile);
     };
     ProfileComponent.prototype.ngOnInit = function () {
     };

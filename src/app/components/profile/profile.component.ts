@@ -16,6 +16,8 @@ import {classToPlain} from "class-transformer";
 export class ProfileComponent  { 
     profile:any;
     userprofile: userprofile= new userprofile();
+    //userprofile:userprofile[];
+    userprofile1:userprofile= new userprofile();
 
     test : any;
  
@@ -23,7 +25,6 @@ export class ProfileComponent  {
     constructor(private auth:Auth,private profileservice:profileService)
     {
         this.profile = JSON.parse(localStorage.getItem('profile'));
-       
    /*    this.profileservice.verifyProfile()
                 .map(res => res.json())
                 .map(res => plainToClass(userprofile, res))
@@ -35,20 +36,11 @@ export class ProfileComponent  {
             ;
 */
             this.profileservice.verifyProfilePromise()
-            
             .then(response=>
                     this.getData(response)
-                    /*response=>
-                    this.usrProfile = plainToClass(response)
-                    console.log(this.usrProfile)*/
-                 
-                );
+            );
         
-       // this.userprofile.Email = "testbullshit";
-
-        //let test = classToPlain(this.userprofile);
-        //console.log(test);
-
+      
     } 
     getData(res:any)
     {
@@ -56,14 +48,17 @@ export class ProfileComponent  {
         {
             console.log("object is empty");    
         }
-        else{
-                this.userprofile = plainToClass(userprofile,res);
-                console.log( this.userprofile);
+        else
+        {
+            this.userprofile = new userprofile();
+           // this.userprofile1 = new userprofile();
+            this.userprofile.Email = res.Email;
+            this.userprofile.firstName = res.firstName;
+            this.userprofile.lastName = res.lastName;
+
+          //  this.userprofile1=  plainToClass(userprofile,res);
+            console.log( this.userprofile);
         }
-       // console.log(res);
-        //with promise if more logic need to be done it has to be here like checking if the email is null call post new user info to the API...
-       //  this.userprofile = plainToClass(userprofile,res);
-     //    console.log(this.userprofile);
     }
 
     ngOnInit()

@@ -35,7 +35,7 @@ export class profileService{
         return this.authHttp
         .get(this.profileUrl + "/profileverify")
         .toPromise()
-        .then(this.extractDataPromise)
+        .then(response=>response.json() as userprofile[])
         .catch(this.handleError);
     }
     verifyProfile() : Observable<any>

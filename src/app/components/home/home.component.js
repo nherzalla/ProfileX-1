@@ -10,17 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../../services/auth.service');
+var router_1 = require('@angular/router');
 var HomeComponent = (function () {
-    function HomeComponent(auth) {
+    function HomeComponent(auth, router) {
         this.auth = auth;
+        this.router = router;
     }
+    HomeComponent.prototype.redirectRequest = function () {
+        if (this.auth.authenticated()) {
+            this.router.navigateByUrl('/profile');
+        }
+    };
     HomeComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'home',
             templateUrl: "home.component.html",
         }), 
-        __metadata('design:paramtypes', [auth_service_1.Auth])
+        __metadata('design:paramtypes', [auth_service_1.Auth, router_1.Router])
     ], HomeComponent);
     return HomeComponent;
 }());

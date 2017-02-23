@@ -2,6 +2,7 @@
 
 import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Router } from '@angular/router';
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -13,9 +14,10 @@ export class Auth {
   lock = new Auth0Lock('hDIOjnQhv5O1SW3xdwLQ3O102oDRydKZ', 'myfaceprofile.auth0.com', 
   { auth: 
     {
-      params: {scope: 'openid email user_metadata app_metadata picture'},
+      params: {scope: 'openid email user_metadata app_metadata picture'}
     },
      allowForgotPassword: true,
+     
     
      additionalSignUpFields: [
         {
@@ -29,7 +31,7 @@ export class Auth {
       ]
 });
 
-  constructor() 
+  constructor(private router: Router) 
   {
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult:any) => 
@@ -51,15 +53,20 @@ export class Auth {
 
   public login() {
 
-    this.lock.show((error: string, profile: Object, id_token: string) => {
-      if (error) {
-        console.log(error);
-      }
-      // We get a profile object for the user from Auth0
-      localStorage.setItem('profile', JSON.stringify(profile));
-      // We also get the user's JWT
-      localStorage.setItem('id_token', id_token);
-      });
+    this.lock.show(
+      (error: string, profile: Object, id_token: string) => 
+      {
+          if (error) 
+          {
+            console.log(error);
+          }
+          // We get a profile object for the user from Auth0
+          localStorage.setItem('profile', JSON.stringify(profile));
+          // We also get the user's JWT
+          localStorage.setItem('id_token', id_token);
+
+        this.router.navigateByUrl('/profile');
+          });
   }
 
   public authenticated() {
