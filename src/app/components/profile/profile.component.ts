@@ -20,7 +20,7 @@ export class ProfileComponent  {
     userprofile1:userprofile= new userprofile();
 
    settings:boolean;
- 
+  initialized: any = false;
 
     constructor(private auth:Auth,private profileservice:profileService)
     {
@@ -36,6 +36,7 @@ export class ProfileComponent  {
                 })
             ;
 */
+           
             this.profileservice.verifyProfilePromise()
             .then(response=>
                     this.getData(response)
@@ -66,9 +67,10 @@ export class ProfileComponent  {
         }
     }
 
-    ngOnInit()
-    {
-       
+    ngOnInit(){ 
+        
+        this.initialized=true; 
 
-    } 
+        
+    }
 }

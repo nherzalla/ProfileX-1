@@ -20,6 +20,7 @@ var ProfileComponent = (function () {
         this.userprofile = new userprofile_model_1.userprofile();
         //userprofile:userprofile[];
         this.userprofile1 = new userprofile_model_1.userprofile();
+        this.initialized = false;
         this.settings = false;
         this.profile = JSON.parse(localStorage.getItem('profile'));
         /*    this.profileservice.verifyProfile()
@@ -55,6 +56,7 @@ var ProfileComponent = (function () {
         }
     };
     ProfileComponent.prototype.ngOnInit = function () {
+        this.initialized = true;
     };
     ProfileComponent = __decorate([
         core_1.Component({
