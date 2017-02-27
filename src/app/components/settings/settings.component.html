@@ -18,7 +18,7 @@
                     <div class="panel b">
                         <div class="panel-heading bg-gray-lighter text-bold">Profile</div>
                         <div class="panel-body">
-                            <form #form="ngForm" novalidate>
+                            <form #form="ngForm" [formGroup]="profileInfo" novalidate>
                                 <div class="form-group">
                                     <label>Picture</label>
                                     <input type="file" data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline" data-buttontext="Upload new picture"
