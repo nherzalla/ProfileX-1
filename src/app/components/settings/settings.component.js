@@ -11,15 +11,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../../services/auth.service');
 var profile_service_1 = require('../../services/profile.service');
+var userprofile_model_1 = require('../../models/userprofile.model');
 var SettingsComponent = (function () {
-    /*  profile:any;
-      userprofile: userprofile= new userprofile();
-      //userprofile:userprofile[];
-      userprofile1:userprofile= new userprofile();*/
     function SettingsComponent(auth, profileservice) {
+        var _this = this;
         this.auth = auth;
         this.profileservice = profileservice;
+        /*  profile:any;
+          userprofile: userprofile= new userprofile();
+          //userprofile:userprofile[];
+          userprofile1:userprofile= new userprofile();*/
+        // userprofile:userprofile[];
+        this.userprofile = new userprofile_model_1.userprofile();
+        this.profileservice.verifyProfilePromise()
+            .then(function (response) {
+            return _this.getData(response);
+        });
     }
+    SettingsComponent.prototype.getData = function (res) {
+        if (res.length == 0) {
+            console.log("object is empty");
+        }
+        else {
+            this.userprofile = new userprofile_model_1.userprofile();
+            // this.userprofile1 = new userprofile();
+            //  this.userprofile.Email = res.Email;
+            this.userprofile.firstName = res.firstName;
+            this.userprofile.lastName = res.lastName;
+            //  this.userprofile1=  plainToClass(userprofile,res);
+            console.log(this.userprofile);
+        }
+    };
     SettingsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

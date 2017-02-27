@@ -20,8 +20,6 @@ var ProfileComponent = (function () {
         this.userprofile = new userprofile_model_1.userprofile();
         //userprofile:userprofile[];
         this.userprofile1 = new userprofile_model_1.userprofile();
-        this.initialized = false;
-        this.settings = false;
         this.profile = JSON.parse(localStorage.getItem('profile'));
         /*    this.profileservice.verifyProfile()
                      .map(res => res.json())
@@ -38,9 +36,6 @@ var ProfileComponent = (function () {
             return _this.getData(response);
         });
     }
-    ProfileComponent.prototype.showSettings = function () {
-        this.settings = true;
-    };
     ProfileComponent.prototype.getData = function (res) {
         if (res.length == 0) {
             console.log("object is empty");
@@ -48,7 +43,7 @@ var ProfileComponent = (function () {
         else {
             this.userprofile = new userprofile_model_1.userprofile();
             // this.userprofile1 = new userprofile();
-            this.userprofile.Email = res.Email;
+            //  this.userprofile.Email = res.Email;
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
             //  this.userprofile1=  plainToClass(userprofile,res);
@@ -56,7 +51,6 @@ var ProfileComponent = (function () {
         }
     };
     ProfileComponent.prototype.ngOnInit = function () {
-        this.initialized = true;
     };
     ProfileComponent = __decorate([
         core_1.Component({

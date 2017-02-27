@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
+var forms_1 = require('@angular/forms');
 var app_routing_1 = require('./app.routing');
 var app_component_1 = require('./app.component');
 var angular2_jwt_1 = require('angular2-jwt');
@@ -25,7 +26,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, app_routing_1.routing, http_1.HttpModule],
+            imports: [platform_browser_1.BrowserModule, app_routing_1.routing, http_1.HttpModule, forms_1.FormsModule],
             declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, profile_component_1.ProfileComponent, settings_component_1.SettingsComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [

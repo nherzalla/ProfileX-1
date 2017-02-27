@@ -19,12 +19,10 @@ export class ProfileComponent  {
     //userprofile:userprofile[];
     userprofile1:userprofile= new userprofile();
 
-   settings:boolean;
-  initialized: any = false;
 
     constructor(private auth:Auth,private profileservice:profileService)
     {
-        this.settings = false;
+       
         this.profile = JSON.parse(localStorage.getItem('profile'));
    /*    this.profileservice.verifyProfile()
                 .map(res => res.json())
@@ -44,10 +42,6 @@ export class ProfileComponent  {
         
       
     } 
-    showSettings()
-    {
-        this.settings = true;
-    }
     getData(res:any)
     {
         if(res.length== 0)
@@ -58,7 +52,7 @@ export class ProfileComponent  {
         {
             this.userprofile = new userprofile();
            // this.userprofile1 = new userprofile();
-            this.userprofile.Email = res.Email;
+          //  this.userprofile.Email = res.Email;
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
 
@@ -68,9 +62,6 @@ export class ProfileComponent  {
     }
 
     ngOnInit(){ 
-        
-        this.initialized=true; 
-
         
     }
 }

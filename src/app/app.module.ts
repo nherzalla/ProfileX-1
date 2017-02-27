@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
 
 import {routing,appRoutingProviders} from './app.routing';
 
@@ -22,7 +23,7 @@ import {SettingsComponent} from './components/settings/settings.component';
 
 
 @NgModule({
-  imports:      [ BrowserModule,routing,HttpModule],
+  imports:      [ BrowserModule,routing,HttpModule,FormsModule],
   declarations: [ AppComponent,HomeComponent,ProfileComponent,SettingsComponent ],
   bootstrap:    [ AppComponent ],
   providers:[
