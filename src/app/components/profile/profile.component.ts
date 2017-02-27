@@ -19,11 +19,12 @@ export class ProfileComponent  {
     //userprofile:userprofile[];
     userprofile1:userprofile= new userprofile();
 
-    test : any;
+   settings:boolean;
  
 
     constructor(private auth:Auth,private profileservice:profileService)
     {
+        this.settings = false;
         this.profile = JSON.parse(localStorage.getItem('profile'));
    /*    this.profileservice.verifyProfile()
                 .map(res => res.json())
@@ -42,6 +43,10 @@ export class ProfileComponent  {
         
       
     } 
+    showSettings()
+    {
+        this.settings = true;
+    }
     getData(res:any)
     {
         if(res.length== 0)

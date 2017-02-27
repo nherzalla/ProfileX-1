@@ -20,6 +20,7 @@ var ProfileComponent = (function () {
         this.userprofile = new userprofile_model_1.userprofile();
         //userprofile:userprofile[];
         this.userprofile1 = new userprofile_model_1.userprofile();
+        this.settings = false;
         this.profile = JSON.parse(localStorage.getItem('profile'));
         /*    this.profileservice.verifyProfile()
                      .map(res => res.json())
@@ -36,6 +37,9 @@ var ProfileComponent = (function () {
             return _this.getData(response);
         });
     }
+    ProfileComponent.prototype.showSettings = function () {
+        this.settings = true;
+    };
     ProfileComponent.prototype.getData = function (res) {
         if (res.length == 0) {
             console.log("object is empty");

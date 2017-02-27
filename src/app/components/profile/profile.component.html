@@ -228,6 +228,12 @@
                     <li class="nav-heading ">
                         <span data-localize="sidebar.heading.COMPONENTS">Components</span>
                     </li>
+                    <li>
+                         <a href="#elements" title="Elements" (click)="showSettings()" data-toggle="collapse">
+                            <em class="icon-chemistry"></em>
+                            <span data-localize="sidebar.nav.element.ELEMENTS">Test</span>
+                        </a>
+                    </li>
                     <li class=" ">
                         <a href="#elements" title="Elements" data-toggle="collapse">
                             <em class="icon-chemistry"></em>
@@ -1159,6 +1165,10 @@
                 <div class="col-lg-12">
                     <p>{{userprofile.lastName}}</p>
                 </div>
+                <div *ngIf="settings">
+                    <h1>Show Settings</h1>
+                </div>        
+
             </div>
         </div>
     </section>
