@@ -18,11 +18,12 @@ import {profileService} from './services/profile.service';
 
 import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
+import {SettingsComponent} from './components/settings/settings.component';
 
 
 @NgModule({
   imports:      [ BrowserModule,routing,HttpModule],
-  declarations: [ AppComponent,HomeComponent,ProfileComponent ],
+  declarations: [ AppComponent,HomeComponent,ProfileComponent,SettingsComponent ],
   bootstrap:    [ AppComponent ],
   providers:[
     appRoutingProviders,
