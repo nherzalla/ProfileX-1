@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Auth} from '../../services/auth.service';
 import {profileService} from '../../services/profile.service';
 import {userprofile} from '../../models/userprofile.model';
+import {address} from '../../models/address.model';
 
 import {plainToClass} from "class-transformer";
 import {deserialize} from "class-transformer";
@@ -55,6 +56,7 @@ export class ProfileComponent  {
           //  this.userprofile.Email = res.Email;
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
+            this.userprofile.address = res.address;
 
           //  this.userprofile1=  plainToClass(userprofile,res);
             console.log( this.userprofile);
