@@ -1,7 +1,8 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+ 
 
 import {routing,appRoutingProviders} from './app.routing';
 
@@ -23,7 +24,7 @@ import {SettingsComponent} from './components/settings/settings.component';
 
 
 @NgModule({
-  imports:      [ BrowserModule,routing,HttpModule,FormsModule],
+  imports:      [ BrowserModule,routing,HttpModule,FormsModule,ReactiveFormsModule],
   declarations: [ AppComponent,HomeComponent,ProfileComponent,SettingsComponent ],
   bootstrap:    [ AppComponent ],
   providers:[

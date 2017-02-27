@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FormGroup, Validators, FormBuilder,FormControl,NgForm }  from '@angular/forms';
+
+
 import {Auth} from '../../services/auth.service';
 import {profileService} from '../../services/profile.service';
 import {userprofile} from '../../models/userprofile.model';
@@ -20,9 +23,17 @@ export class SettingsComponent  {
     userprofile1:userprofile= new userprofile();*/
   // userprofile:userprofile[];
   userprofile: userprofile= new userprofile();
+  profileInfoform:FormGroup;
 
-    constructor(private auth:Auth,private profileservice:profileService)
+    constructor(private auth:Auth,private profileservice:profileService,formBuilder:FormBuilder)
     {
+        this.profileInfoform = formBuilder.group({
+           // firstName: new FormControl(),
+          //  lastName : new FormControl()
+           // email: ['', Validators.required],
+            //password: ['', Validators.required],
+        });
+
            this.profileservice.verifyProfilePromise()
             .then(response=>
                     this.getData(response)
@@ -46,6 +57,11 @@ export class SettingsComponent  {
           //  this.userprofile1=  plainToClass(userprofile,res);
             console.log( this.userprofile);
         }
+    }
+
+    saveprofileInfo(profileInfoform:NgForm)
+    {
+        console.log(this.userprofile);
     }
 
 }

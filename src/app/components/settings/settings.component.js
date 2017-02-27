@@ -9,11 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var auth_service_1 = require('../../services/auth.service');
 var profile_service_1 = require('../../services/profile.service');
 var userprofile_model_1 = require('../../models/userprofile.model');
 var SettingsComponent = (function () {
-    function SettingsComponent(auth, profileservice) {
+    function SettingsComponent(auth, profileservice, formBuilder) {
         var _this = this;
         this.auth = auth;
         this.profileservice = profileservice;
@@ -23,6 +24,7 @@ var SettingsComponent = (function () {
           userprofile1:userprofile= new userprofile();*/
         // userprofile:userprofile[];
         this.userprofile = new userprofile_model_1.userprofile();
+        this.profileInfoform = formBuilder.group({});
         this.profileservice.verifyProfilePromise()
             .then(function (response) {
             return _this.getData(response);
@@ -42,13 +44,16 @@ var SettingsComponent = (function () {
             console.log(this.userprofile);
         }
     };
+    SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
+        console.log(this.userprofile);
+    };
     SettingsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'settings',
             templateUrl: "settings.component.html",
         }), 
-        __metadata('design:paramtypes', [auth_service_1.Auth, profile_service_1.profileService])
+        __metadata('design:paramtypes', [auth_service_1.Auth, profile_service_1.profileService, forms_1.FormBuilder])
     ], SettingsComponent);
     return SettingsComponent;
 }());
