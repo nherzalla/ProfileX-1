@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl, NgForm, FormArray } from '@angular/forms';
+
 import {address} from '../../models/address.model';
 
 @Component({
@@ -9,11 +10,13 @@ import {address} from '../../models/address.model';
 })
 export class AddressComponent {
     @Input() address:address[]
-    public adressForm: FormGroup;
+    public addressform: FormGroup;
    
    
-    constructor()
+    constructor(private formBuilder: FormBuilder)
     {
-        console.log(this.address);
+          this.addressform = this.formBuilder.group({
+            address1: ['', Validators.required]
+        });
     }
 }

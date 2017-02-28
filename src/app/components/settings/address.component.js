@@ -9,9 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var AddressComponent = (function () {
-    function AddressComponent() {
-        console.log(this.address);
+    function AddressComponent(formBuilder) {
+        this.formBuilder = formBuilder;
+        this.addressform = this.formBuilder.group({
+            address1: ['', forms_1.Validators.required]
+        });
     }
     __decorate([
         core_1.Input(), 
@@ -23,7 +27,7 @@ var AddressComponent = (function () {
             selector: 'address',
             templateUrl: 'address.component.html',
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], AddressComponent);
     return AddressComponent;
 }());

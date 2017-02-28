@@ -21,5 +21,18 @@
 
 </form>-->
 
-    <!--<address [group]="profileInfoform.controls.addresses.controls[i]"></address>-->
-            <h1>{{address.address1}}</h1>
+<!--<address [group]="profileInfoform.controls.addresses.controls[i]"></address>-->
+
+
+<div>
+    <form  (ngSubmit)="onSubmit()" [formGroup]="addressform">
+        
+            <input type="text" class="form-control"  [formControl]="addressform.controls.address1"  [(ngModel)]="address.address1">
+<!--<div *ngFor="let add of address" class="form-row">
+        </div>-->
+
+    </form>
+
+</div>
+
+<!--<h1>{{address.address1}}</h1>-->
