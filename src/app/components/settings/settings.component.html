@@ -52,7 +52,9 @@
                     <div class="panel b">
                         <div class="panel-heading bg-gray-lighter text-bold">Addresses</div>
                         <div class="panel-body">
-                           
+                           <address *ngFor="let address of addresses"
+                           [address]="address">
+                           </address>
                         </div>
                     </div>
                 </div>

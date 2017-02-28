@@ -11,11 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AddressComponent = (function () {
     function AddressComponent() {
+        console.log(this.address);
     }
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)
-    ], AddressComponent.prototype, "addresses", void 0);
+    ], AddressComponent.prototype, "address", void 0);
     AddressComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

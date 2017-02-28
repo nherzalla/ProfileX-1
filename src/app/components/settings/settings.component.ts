@@ -5,6 +5,7 @@ import { FormGroup, Validators, FormBuilder, FormControl, NgForm, FormArray } fr
 import { Auth } from '../../services/auth.service';
 import { profileService } from '../../services/profile.service';
 import { userprofile } from '../../models/userprofile.model';
+import {address} from "../../models/address.model";
 import { AddressComponent } from '../settings/address.component';
 
 
@@ -27,6 +28,7 @@ export class SettingsComponent {
     // userprofile:userprofile[];
     userprofile: userprofile = new userprofile();
     profileInfoform: FormGroup;
+    addresses :  address[];
 
     constructor(private auth: Auth, private profileservice: profileService, private formBuilder: FormBuilder) {
         this.profileInfoform = this.formBuilder.group({
@@ -54,7 +56,7 @@ export class SettingsComponent {
             //  this.userprofile.Email = res.Email;
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
-            this.userprofile.address = res.address;
+            this.addresses = res.address;
 
             //  this.userprofile1=  plainToClass(userprofile,res);
             console.log(this.userprofile);

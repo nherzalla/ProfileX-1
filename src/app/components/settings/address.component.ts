@@ -8,6 +8,12 @@ import {address} from '../../models/address.model';
     templateUrl: 'address.component.html',
 })
 export class AddressComponent {
-    @Input() addresses:address[]
+    @Input() address:address[]
     public adressForm: FormGroup;
+   
+   
+    constructor()
+    {
+        console.log(this.address);
+    }
 }

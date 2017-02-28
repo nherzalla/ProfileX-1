@@ -44,7 +44,7 @@ var SettingsComponent = (function () {
             //  this.userprofile.Email = res.Email;
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
-            this.userprofile.address = res.address;
+            this.addresses = res.address;
             //  this.userprofile1=  plainToClass(userprofile,res);
             console.log(this.userprofile);
         }
