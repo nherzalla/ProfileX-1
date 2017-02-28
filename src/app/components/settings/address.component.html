@@ -25,13 +25,15 @@
 
 
 <div>
-    <form  (ngSubmit)="onSubmit()" [formGroup]="addressform">
-        
-            <input type="text" class="form-control"  [formControl]="addressform.controls.address1"  [(ngModel)]="address.address1">
-<!--<div *ngFor="let add of address" class="form-row">
-        </div>-->
+    <form (ngSubmit)="onSubmit()" [formGroup]="addressform">
 
+        <input type="text" class="form-control" [formControl]="addressform.controls.address1" [(ngModel)]="address.address1">
+<div class="form-row">
+            <button type="submit">Save</button>
+        </div>
+       
     </form>
+     
 
 </div>
 

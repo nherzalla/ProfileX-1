@@ -17,6 +17,9 @@ var AddressComponent = (function () {
             address1: ['', forms_1.Validators.required]
         });
     }
+    AddressComponent.prototype.onSubmit = function (addressform) {
+        console.log(this.address);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)

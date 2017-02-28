@@ -19,4 +19,8 @@ export class AddressComponent {
             address1: ['', Validators.required]
         });
     }
+    onSubmit(addressform: NgForm)
+    {
+        console.log(this.address);
+    }
 }
