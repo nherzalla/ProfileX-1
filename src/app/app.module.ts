@@ -21,11 +21,12 @@ import {profileService} from './services/profile.service';
 import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {SettingsComponent} from './components/settings/settings.component';
+import {AddressComponent} from './components/settings/address.component';
 
 
 @NgModule({
   imports:      [ BrowserModule,routing,HttpModule,FormsModule,ReactiveFormsModule],
-  declarations: [ AppComponent,HomeComponent,ProfileComponent,SettingsComponent ],
+  declarations: [ AppComponent,HomeComponent,ProfileComponent,SettingsComponent,AddressComponent ],
   bootstrap:    [ AppComponent ],
   providers:[
     appRoutingProviders,

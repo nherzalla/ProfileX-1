@@ -1,0 +1,25 @@
+<!--<form action="">
+  
+    <div formArrayName="addresses">
+        <div *ngFor="let address of profileInfoform.controls.addresses.controls; let i=index" class="panel panel-default">
+            <div class="panel-heading">
+                <span>Address {{i + 1}}</span>
+                <span class="glyphicon glyphicon-remove pull-right" *ngIf="profileInfoform.controls.addresses.controls.length > 1" (click)="removeAddress(i)"></span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+                <label>street</label>
+                <input type="text" class="form-control" [formControl]="address.controls.address1" [(ngModel)]="address.address1">
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-20">
+        <a (click)="addAddress()" style="cursor: default">
+                                        Add another address +
+                                    </a>
+    </div>
+
+</form>-->
+
+    <!--<address [group]="profileInfoform.controls.addresses.controls[i]"></address>-->
+            

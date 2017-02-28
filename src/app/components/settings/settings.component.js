@@ -18,13 +18,17 @@ var SettingsComponent = (function () {
         var _this = this;
         this.auth = auth;
         this.profileservice = profileservice;
+        this.formBuilder = formBuilder;
         /*  profile:any;
           userprofile: userprofile= new userprofile();
           //userprofile:userprofile[];
           userprofile1:userprofile= new userprofile();*/
         // userprofile:userprofile[];
         this.userprofile = new userprofile_model_1.userprofile();
-        this.profileInfoform = formBuilder.group({});
+        this.profileInfoform = this.formBuilder.group({
+            firstName: ['', forms_1.Validators.required],
+            lastName: ['', forms_1.Validators.required]
+        });
         this.profileservice.verifyProfilePromise()
             .then(function (response) {
             return _this.getData(response);
@@ -40,12 +44,14 @@ var SettingsComponent = (function () {
             //  this.userprofile.Email = res.Email;
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
+            this.userprofile.address = res.address;
             //  this.userprofile1=  plainToClass(userprofile,res);
             console.log(this.userprofile);
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
         console.log(this.userprofile);
+        console.log(this.userprofile.address);
     };
     SettingsComponent = __decorate([
         core_1.Component({
