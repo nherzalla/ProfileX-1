@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 
 import 'rxjs/add/operator/toPromise';
 import {userprofile} from '../models/userprofile.model';
+import {address} from '../models/address.model';
 
 @Injectable()
 
@@ -27,6 +28,14 @@ export class profileService{
         .get(this.profileUrl)
         .toPromise()
         .then(response=>response.text)
+        .catch(this.handleError);
+    }
+    updateAddress(address:address[])
+    {
+        return this.authHttp
+        .post(this.profileUrl + "/updateaddress",address)
+        .toPromise()
+        .then(response=>response.json() as userprofile[])
         .catch(this.handleError);
     }
 
@@ -49,6 +58,8 @@ export class profileService{
         //)
         
     }
+
+    //Private methods.......................................................................
     private extractDataPromise(res:Response)
     {
         let body = res.json();
@@ -66,4 +77,5 @@ export class profileService{
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     }
+    //Private methods.......................................................................
 }
