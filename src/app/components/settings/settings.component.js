@@ -65,6 +65,12 @@ var SettingsComponent = (function () {
     SettingsComponent.prototype.addAddress = function (event) {
         event.preventDefault();
         var emptyaddress = new address_model_1.address();
+        /* emptyaddress.UniqId = "0";
+         emptyaddress.address1 = "";
+         emptyaddress.address2 = "";
+         emptyaddress.city="";
+         emptyaddress.state = "";
+         emptyaddress.country = "";*/
         this.addresses.push(emptyaddress);
         this.addresses.reverse();
         // this.profileInfoform.controls

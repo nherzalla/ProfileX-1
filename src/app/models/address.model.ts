@@ -5,4 +5,5 @@ export class address{
         public city : string;
         public state : string;
         public country: string;
+        public UniqId:string;
 }
