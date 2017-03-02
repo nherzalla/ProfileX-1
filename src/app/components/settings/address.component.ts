@@ -30,11 +30,37 @@ export class AddressComponent {
     }
     onSubmit(addressform: NgForm)
     {
-       this.profileservice.updateAddress(this.address)
+        console.log(this.address);
+
+      /* this.profileservice.updateAddress(this.address)
         .then(response=>
                     //this.getData(response)
                 console.log(response)
-        );
+        );*/
 
     }
+    deleteAddress(index:number)
+    {
+        event.preventDefault();
+        console.log(this.address);
+       //this.address.splice(0,1);
+    }
+     /*   addAddress() {
+       console.log(this.addressform);
+
+       // const control = this.addressform;
+        //control.push(this.initAddress());
+    }*/
+  /*   initAddress() {
+        // initialize our address
+        return this.formBuilder.group({
+          address1: ['', Validators.required],
+            address2: new FormControl(),
+            city: ['', Validators.required],
+            state: new FormControl(),
+            country: ['', Validators.required],
+
+        });
+    }*/
+
 }

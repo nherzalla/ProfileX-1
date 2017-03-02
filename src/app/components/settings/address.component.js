@@ -26,11 +26,17 @@ var AddressComponent = (function () {
         });
     }
     AddressComponent.prototype.onSubmit = function (addressform) {
-        this.profileservice.updateAddress(this.address)
-            .then(function (response) {
-            //this.getData(response)
-            return console.log(response);
-        });
+        console.log(this.address);
+        /* this.profileservice.updateAddress(this.address)
+          .then(response=>
+                      //this.getData(response)
+                  console.log(response)
+          );*/
+    };
+    AddressComponent.prototype.deleteAddress = function (index) {
+        event.preventDefault();
+        console.log(this.address);
+        //this.address.splice(0,1);
     };
     __decorate([
         core_1.Input(), 

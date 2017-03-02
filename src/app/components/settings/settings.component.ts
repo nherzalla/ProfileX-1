@@ -78,12 +78,20 @@ export class SettingsComponent {
         });
     }
 */
-/*    addAddress() {
-        const control = <FormArray>this.profileInfoform.controls['addresses'];
-        control.push(this.initAddress());
+    addAddress(event:any)
+     {
+       event.preventDefault();
+       var emptyaddress = new address();
+       this.addresses.push(emptyaddress);
+       this.addresses.reverse();
+       
+      // this.profileInfoform.controls
+
+   //     const control = <FormArray>this.profileInfoform.controls['addresses'];
+     //   control.push(this.initAddress());
     }
 
-    removeAddress(i: number) {
+/*    removeAddress(i: number) {
         // remove address from the list
         const control = <FormArray>this.profileInfoform.controls['addresses'];
         control.removeAt(i);

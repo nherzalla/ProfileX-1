@@ -13,6 +13,7 @@ var forms_1 = require('@angular/forms');
 var auth_service_1 = require('../../services/auth.service');
 var profile_service_1 = require('../../services/profile.service');
 var userprofile_model_1 = require('../../models/userprofile.model');
+var address_model_1 = require("../../models/address.model");
 var SettingsComponent = (function () {
     function SettingsComponent(auth, profileservice, formBuilder) {
         var _this = this;
@@ -52,6 +53,23 @@ var SettingsComponent = (function () {
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
         console.log(this.userprofile);
         console.log(this.userprofile.address);
+    };
+    /*  initAddress() {
+          // initialize our address
+          return this.formBuilder.group({
+              address1: ['', Validators.required]
+  
+          });
+      }
+  */
+    SettingsComponent.prototype.addAddress = function (event) {
+        event.preventDefault();
+        var emptyaddress = new address_model_1.address();
+        this.addresses.push(emptyaddress);
+        this.addresses.reverse();
+        // this.profileInfoform.controls
+        //     const control = <FormArray>this.profileInfoform.controls['addresses'];
+        //   control.push(this.initAddress());
     };
     SettingsComponent = __decorate([
         core_1.Component({
