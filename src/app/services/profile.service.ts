@@ -39,6 +39,14 @@ export class profileService{
         .catch(this.handleError);
     }
 
+    addAddress(address:address[])
+    {
+        return this.authHttp
+        .post(this.profileUrl + "/insertaddress",address)
+        .toPromise()
+        .then(response=>response.json() as userprofile[])
+        .catch(this.handleError);
+    }
     verifyProfilePromise()
     {
         return this.authHttp

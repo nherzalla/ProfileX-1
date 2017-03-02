@@ -26,16 +26,26 @@ var AddressComponent = (function () {
         });
     }
     AddressComponent.prototype.onSubmit = function (addressform) {
-        console.log(this.address);
-        /* this.profileservice.updateAddress(this.address)
-          .then(response=>
-                      //this.getData(response)
-                  console.log(response)
-          );*/
+        this.profileservice.updateAddress(this.address)
+            .then(function (response) {
+            //this.getData(response)
+            return console.log(response);
+        });
+    };
+    AddressComponent.prototype.insertaddress = function (add) {
+        this.profileservice.addAddress(this.address)
+            .then(function (response) {
+            //this.getData(response)
+            return console.log(response);
+        });
     };
     AddressComponent.prototype.deleteAddress = function (index) {
         event.preventDefault();
-        console.log(this.address);
+        delete this.address;
+        //£
+        //   this.address = new address[];
+        //const control = this.addressform.removeControl()
+        //control.removeAt(0);
         //this.address.splice(0,1);
     };
     __decorate([
@@ -47,6 +57,7 @@ var AddressComponent = (function () {
             moduleId: module.id,
             selector: 'address',
             templateUrl: 'address.component.html',
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
         __metadata('design:paramtypes', [forms_1.FormBuilder, auth_service_1.Auth, profile_service_1.profileService])
     ], AddressComponent);

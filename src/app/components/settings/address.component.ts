@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl, NgForm, FormArray } from '@angular/forms';
+
 
 
 import {profileService} from '../../services/profile.service';
@@ -10,7 +11,9 @@ import {address} from '../../models/address.model';
 @Component({
     moduleId: module.id,
     selector: 'address',
-    templateUrl: 'address.component.html',
+    templateUrl: 'address.component.html'
+    ,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddressComponent {
     @Input() address:address[]
@@ -30,37 +33,33 @@ export class AddressComponent {
     }
     onSubmit(addressform: NgForm)
     {
-        console.log(this.address);
-
-      /* this.profileservice.updateAddress(this.address)
+       
+       this.profileservice.updateAddress(this.address)
         .then(response=>
                     //this.getData(response)
                 console.log(response)
-        );*/
+        );
 
+    }
+    insertaddress(add:any)
+    {
+        this.profileservice.addAddress(this.address)
+        .then(response=>
+                    //this.getData(response)
+                console.log(response)
+        );
     }
     deleteAddress(index:number)
     {
         event.preventDefault();
-        console.log(this.address);
+        delete this.address;
+        
+        //£
+     //   this.address = new address[];
+        //const control = this.addressform.removeControl()
+        //control.removeAt(0);
+
        //this.address.splice(0,1);
     }
-     /*   addAddress() {
-       console.log(this.addressform);
-
-       // const control = this.addressform;
-        //control.push(this.initAddress());
-    }*/
-  /*   initAddress() {
-        // initialize our address
-        return this.formBuilder.group({
-          address1: ['', Validators.required],
-            address2: new FormControl(),
-            city: ['', Validators.required],
-            state: new FormControl(),
-            country: ['', Validators.required],
-
-        });
-    }*/
-
+    
 }

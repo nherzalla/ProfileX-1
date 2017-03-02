@@ -34,6 +34,13 @@ var profileService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    profileService.prototype.addAddress = function (address) {
+        return this.authHttp
+            .post(this.profileUrl + "/insertaddress", address)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     profileService.prototype.verifyProfilePromise = function () {
         return this.authHttp
             .get(this.profileUrl + "/profileverify")

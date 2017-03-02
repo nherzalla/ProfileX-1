@@ -50,7 +50,8 @@
             <input type="text" class="form-control" [formControl]="addressform.controls.country" [(ngModel)]="address.country">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-info">Update Address</button>
+            <button type="submit" class="btn btn-info" *ngIf="address.UniqId">Update Address</button>
+            <button type="button" (click)="insertaddress($event)" class="btn btn-info" *ngIf="!address.UniqId">Insert Address</button>
         </div>
 
     </form>
