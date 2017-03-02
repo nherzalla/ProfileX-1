@@ -53,13 +53,18 @@
                         <div class="panel-heading bg-gray-lighter text-bold">Addresses</div>
                         <br>
                         <div class="panel-body">
-                            <button type="submit" class="btn btn-info" (click)="addAddress($event)">Add Address</button>
+                            <button type="submit" class="btn btn-success col-md-12" (click)="addAddress($event)">Add Address</button>
                         </div>
 
-                        <div class="panel-body">
-                            <address *ngFor="let address of addresses" [address]="address">
+                        <div class="panel">
+                            <div class="panel-body" *ngFor="let address of addresses; let i = index">
+                                <div>
+                                    <a href="#" class="btn btn-danger col-md-12" (click)="deleteAddress(i,address)">Delete</a>
+                                    <address [address]="address">
+                                    </address>
+                                </div>
 
-                            </address>
+                            </div>
                         </div>
                     </div>
                 </div>

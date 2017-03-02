@@ -20,11 +20,6 @@ var SettingsComponent = (function () {
         this.auth = auth;
         this.profileservice = profileservice;
         this.formBuilder = formBuilder;
-        /*  profile:any;
-          userprofile: userprofile= new userprofile();
-          //userprofile:userprofile[];
-          userprofile1:userprofile= new userprofile();*/
-        // userprofile:userprofile[];
         this.userprofile = new userprofile_model_1.userprofile();
         this.profileInfoform = this.formBuilder.group({
             firstName: ['', forms_1.Validators.required],
@@ -41,41 +36,28 @@ var SettingsComponent = (function () {
         }
         else {
             this.userprofile = new userprofile_model_1.userprofile();
-            // this.userprofile1 = new userprofile();
-            //  this.userprofile.Email = res.Email;
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
             this.addresses = res.address;
-            //  this.userprofile1=  plainToClass(userprofile,res);
-            console.log(this.userprofile);
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
         console.log(this.userprofile);
         console.log(this.userprofile.address);
     };
-    /*  initAddress() {
-          // initialize our address
-          return this.formBuilder.group({
-              address1: ['', Validators.required]
-  
-          });
-      }
-  */
     SettingsComponent.prototype.addAddress = function (event) {
         event.preventDefault();
         var emptyaddress = new address_model_1.address();
-        /* emptyaddress.UniqId = "0";
-         emptyaddress.address1 = "";
-         emptyaddress.address2 = "";
-         emptyaddress.city="";
-         emptyaddress.state = "";
-         emptyaddress.country = "";*/
         this.addresses.push(emptyaddress);
         this.addresses.reverse();
-        // this.profileInfoform.controls
-        //     const control = <FormArray>this.profileInfoform.controls['addresses'];
-        //   control.push(this.initAddress());
+    };
+    SettingsComponent.prototype.deleteAddress = function (index, address) {
+        this.profileservice.deleteAddress(address)
+            .then(function (response) {
+            //this.getData(response)
+            return console.log(response);
+        });
+        this.addresses.splice(index, 1);
     };
     SettingsComponent = __decorate([
         core_1.Component({

@@ -44,7 +44,7 @@
 
         <form (ngSubmit)="onSubmit()" [formGroup]="addressform">
 
-            <div><a href="#" (click)="deleteAddress()">Delete</a> </div>
+           
             <div class="form-group">
                 <label>Address 1</label>
                 <input type="text" class="form-control" [formControl]="addressform.controls.address1" [(ngModel)]="address.address1">

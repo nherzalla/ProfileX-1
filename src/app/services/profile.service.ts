@@ -30,6 +30,16 @@ export class profileService{
         .then(response=>response.text)
         .catch(this.handleError);
     }
+
+    addAddress(address:address[])
+    {
+        return this.authHttp
+        .post(this.profileUrl + "/insertaddress",address)
+        .toPromise()
+        .then(response=>response.json() as userprofile[])
+        .catch(this.handleError);
+    }
+
     updateAddress(address:address[])
     {
         return this.authHttp
@@ -38,11 +48,10 @@ export class profileService{
         .then(response=>response.json() as userprofile[])
         .catch(this.handleError);
     }
-
-    addAddress(address:address[])
+    deleteAddress(address:address)
     {
         return this.authHttp
-        .post(this.profileUrl + "/insertaddress",address)
+        .post(this.profileUrl + "/deleteaddress",address)
         .toPromise()
         .then(response=>response.json() as userprofile[])
         .catch(this.handleError);

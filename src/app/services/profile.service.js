@@ -27,6 +27,13 @@ var profileService = (function () {
             .then(function (response) { return response.text; })
             .catch(this.handleError);
     };
+    profileService.prototype.addAddress = function (address) {
+        return this.authHttp
+            .post(this.profileUrl + "/insertaddress", address)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     profileService.prototype.updateAddress = function (address) {
         return this.authHttp
             .post(this.profileUrl + "/updateaddress", address)
@@ -34,9 +41,9 @@ var profileService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    profileService.prototype.addAddress = function (address) {
+    profileService.prototype.deleteAddress = function (address) {
         return this.authHttp
-            .post(this.profileUrl + "/insertaddress", address)
+            .post(this.profileUrl + "/deleteaddress", address)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
