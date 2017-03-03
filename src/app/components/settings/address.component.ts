@@ -8,6 +8,7 @@ import {Auth} from '../../services/auth.service';
 
 import {address} from '../../models/address.model';
 
+declare var swal: any;
 @Component({
     moduleId: module.id,
     selector: 'address',
@@ -39,6 +40,12 @@ export class AddressComponent {
                     //this.getData(response)
                 console.log(response)
         );
+
+          swal(
+                'Updated!',
+                'Your address has been updated.',
+                'success'
+            )
 
     }
     insertaddress(add:any)

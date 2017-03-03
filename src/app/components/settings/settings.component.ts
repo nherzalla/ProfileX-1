@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl, NgForm, FormArray } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 
 import { Auth } from '../../services/auth.service';
 import { profileService } from '../../services/profile.service';
 import { userprofile } from '../../models/userprofile.model';
-import {address} from "../../models/address.model";
+import { address } from "../../models/address.model";
 import { AddressComponent } from '../settings/address.component';
 
 
@@ -14,6 +16,7 @@ import { plainToClass } from "class-transformer";
 import { deserialize } from "class-transformer";
 import { classToPlain } from "class-transformer";
 
+declare var swal: any;
 
 @Component({
     moduleId: module.id,
@@ -24,7 +27,7 @@ export class SettingsComponent {
 
     userprofile: userprofile = new userprofile();
     profileInfoform: FormGroup;
-    addresses :  address[];
+    addresses: address[];
 
     constructor(private auth: Auth, private profileservice: profileService, private formBuilder: FormBuilder) {
         this.profileInfoform = this.formBuilder.group({
@@ -56,17 +59,23 @@ export class SettingsComponent {
         console.log(this.userprofile.address);
     }
 
-    addAddress(event:any)
-     {
-       event.preventDefault();
-       var emptyaddress = new address();
-       this.addresses.push(emptyaddress);
-       this.addresses.reverse();
+    addAddress(event: any) {
+        event.preventDefault();
+        var emptyaddress = new address();
+        this.addresses.push(emptyaddress);
+        this.addresses.reverse();
 
     }
 
-    deleteAddress(index:number,address:address)
-    {
+    deleteAddress(event: any, index: number, address: address) {
+        event.preventDefault();
+
+       swal(
+                'Deleted!',
+                'Your file has been deleted.',
+                'warning'
+            )
+
          this.profileservice.deleteAddress(address)
         .then(response=>
                     //this.getData(response)
@@ -74,6 +83,7 @@ export class SettingsComponent {
         );
         this.addresses.splice(index,1);
     }
+
 
 
 

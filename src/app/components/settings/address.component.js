@@ -31,6 +31,7 @@ var AddressComponent = (function () {
             //this.getData(response)
             return console.log(response);
         });
+        swal('Updated!', 'Your address has been updated.', 'success');
     };
     AddressComponent.prototype.insertaddress = function (add) {
         this.profileservice.addAddress(this.address)

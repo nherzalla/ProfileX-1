@@ -59,7 +59,7 @@
                         <div class="panel">
                             <div class="panel-body" *ngFor="let address of addresses; let i = index">
                                 <div>
-                                    <a href="#" class="btn btn-danger col-md-12" (click)="deleteAddress(i,address)">Delete</a>
+                                    <a href="#" class="btn btn-danger col-md-12" (click)="deleteAddress($event,i,address)">Delete</a>
                                     <address [address]="address">
                                     </address>
                                 </div>

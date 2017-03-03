@@ -51,7 +51,9 @@ var SettingsComponent = (function () {
         this.addresses.push(emptyaddress);
         this.addresses.reverse();
     };
-    SettingsComponent.prototype.deleteAddress = function (index, address) {
+    SettingsComponent.prototype.deleteAddress = function (event, index, address) {
+        event.preventDefault();
+        swal('Deleted!', 'Your file has been deleted.', 'warning');
         this.profileservice.deleteAddress(address)
             .then(function (response) {
             //this.getData(response)
