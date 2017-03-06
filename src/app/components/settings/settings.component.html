@@ -5,7 +5,7 @@
                 <div class="panel-heading bg-gray-lighter text-bold">Personal Settings</div>
                 <div class="list-group"><a href="#tabSetting1" data-toggle="tab" class="list-group-item">Profile</a>
                     <a href="#tabSetting2" data-toggle="tab" class="list-group-item">Addresses</a>
-                    <a href="#tabSetting3" data-toggle="tab" class="list-group-item">Emails</a>
+                    <a href="#tabSetting3" data-toggle="tab" class="list-group-item">Education</a>
                     <a href="#tabSetting4" data-toggle="tab" class="list-group-item">Notifications</a>
                     <a href="#tabSetting5" data-toggle="tab" class="list-group-item">Applications</a>
                 </div>
@@ -23,9 +23,9 @@
                                     <input type="file" data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline" data-buttontext="Upload new picture"
                                         data-iconname="fa fa-upload mr" class="form-control filestyle" id="filestyle-0" tabindex="-1"
                                         style="position: absolute; clip: rect(0px 0px 0px 0px);">
-                                        <div class="bootstrap-filestyle input-group"><span class="group-span-filestyle " tabindex="0"><label for="filestyle-0" class="btn btn-default "><span class="icon-span-filestyle fa fa-upload mr"></span>                                            <span class="buttonText">Upload new picture</span></label>
-                                            </span>
-                                        </div>
+                                    <div class="bootstrap-filestyle input-group"><span class="group-span-filestyle " tabindex="0"><label for="filestyle-0" class="btn btn-default "><span class="icon-span-filestyle fa fa-upload mr"></span>                                        <span class="buttonText">Upload new picture</span></label>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>First Name</label>
@@ -70,52 +70,21 @@
                 </div>
                 <div id="tabSetting3" class="tab-pane">
                     <div class="panel b">
-                        <div class="panel-heading bg-gray-lighter text-bold">Emails</div>
+                        <div class="panel-heading bg-gray-lighter text-bold">Educations</div>
                         <div class="panel-body">
-                            <p>Etiam eros nibh, condimentum in auctor et, aliquam quis elit. Donec id libero eros. Ut fringilla,
-                                justo id fringilla pretium, nibh nunc suscipit mauris, et suscipit nulla nisl ac dolor. Nam
-                                egestas, leo eu gravida tincidunt, sem ipsum pellentesque quam, vel iaculis est quam et eros.</p>
-                            <p>
-                                <strong>Your email addresses</strong>
-                            </p>
-                            <p>
-                                <span class="mr">email@someaddress.com</span>
-                                <span class="label label-success">primary</span>
-                            </p>
-                            <p>
-                                <span class="mr">another.email@someaddress.com</span>
-                                <span class="label bg-gray">private</span>
-                            </p>
+                            <button type="submit" class="btn btn-success col-md-12" (click)="addEducation($event)">Add Education</button>
                         </div>
-                        <div class="panel-body bt">
-                            <p>
-                                <strong>Add email address</strong>
-                            </p>
-                            <form action="">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input type="email" placeholder="email@server.com" class="form-control">
-                                                <span class="input-group-btn">
-                                                   <button type="button" class="btn btn-default">Add</button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="checkbox">
-                                                <label>
-                                                   <input type="checkbox" value="">Keep my email address private</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="panel">
+                            <div class="panel-body" *ngFor="let education of educations; let i = index">
+                                <div>
+                                    <a href="#" class="btn btn-danger col-md-12" (click)="deleteEducation($event,i,education)">Delete</a>
+                                    <education [education]="education">
+                                    </education>
                                 </div>
-                                <button type="button" class="btn btn-info">Update email</button>
-                                <p>
-                                    <small class="text-muted">* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae</small>
-                                </p>
-                            </form>
+
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <div id="tabSetting4" class="tab-pane">

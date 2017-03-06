@@ -34,6 +34,13 @@ var profileService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    profileService.prototype.addEducation = function (education) {
+        return this.authHttp
+            .post(this.profileUrl + "/inserteducation", education)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     profileService.prototype.updateAddress = function (address) {
         return this.authHttp
             .post(this.profileUrl + "/updateaddress", address)
@@ -41,9 +48,23 @@ var profileService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    profileService.prototype.updateEducation = function (education) {
+        return this.authHttp
+            .post(this.profileUrl + "/updateeducation", education)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     profileService.prototype.deleteAddress = function (address) {
         return this.authHttp
             .post(this.profileUrl + "/deleteaddress", address)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    profileService.prototype.deleteEducation = function (education) {
+        return this.authHttp
+            .post(this.profileUrl + "/deleteeducation", education)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);

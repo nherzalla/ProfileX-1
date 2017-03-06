@@ -22,11 +22,12 @@ import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {AddressComponent} from './components/settings/address.component';
+import {EducationComponent} from './components/settings/education.component';
 
 
 @NgModule({
   imports:      [ BrowserModule,routing,HttpModule,FormsModule,ReactiveFormsModule],
-  declarations: [ AppComponent,HomeComponent,ProfileComponent,SettingsComponent,AddressComponent ],
+  declarations: [ AppComponent,HomeComponent,ProfileComponent,SettingsComponent,AddressComponent,EducationComponent ],
   bootstrap:    [ AppComponent ],
   providers:[
     appRoutingProviders,

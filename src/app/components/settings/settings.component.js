@@ -14,6 +14,7 @@ var auth_service_1 = require('../../services/auth.service');
 var profile_service_1 = require('../../services/profile.service');
 var userprofile_model_1 = require('../../models/userprofile.model');
 var address_model_1 = require("../../models/address.model");
+var education_model_1 = require('../../models/education.model');
 var SettingsComponent = (function () {
     function SettingsComponent(auth, profileservice, formBuilder) {
         var _this = this;
@@ -39,6 +40,7 @@ var SettingsComponent = (function () {
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
             this.addresses = res.address;
+            this.educations = res.education;
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
@@ -51,15 +53,35 @@ var SettingsComponent = (function () {
         this.addresses.push(emptyaddress);
         this.addresses.reverse();
     };
+    SettingsComponent.prototype.addEducation = function (event) {
+        event.preventDefault();
+        var emptyeducation = new education_model_1.education();
+        this.educations.push(emptyeducation);
+        this.educations.reverse();
+    };
     SettingsComponent.prototype.deleteAddress = function (event, index, address) {
         event.preventDefault();
-        swal('Deleted!', 'Your file has been deleted.', 'warning');
-        this.profileservice.deleteAddress(address)
-            .then(function (response) {
-            //this.getData(response)
-            return console.log(response);
-        });
+        swal('Deleted!', 'Your address has been deleted.', 'warning');
+        if (address.UniqId != null) {
+            this.profileservice.deleteAddress(address)
+                .then(function (response) {
+                //this.getData(response)
+                return console.log(response);
+            });
+        }
         this.addresses.splice(index, 1);
+    };
+    SettingsComponent.prototype.deleteEducation = function (event, index, education) {
+        event.preventDefault();
+        swal('Deleted!', 'Your education has been deleted.', 'warning');
+        if (education.UniqId != null) {
+            this.profileservice.deleteEducation(education)
+                .then(function (response) {
+                //this.getData(response)
+                return console.log(response);
+            });
+        }
+        this.educations.splice(index, 1);
     };
     SettingsComponent = __decorate([
         core_1.Component({

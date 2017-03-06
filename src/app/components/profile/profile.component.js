@@ -47,6 +47,7 @@ var ProfileComponent = (function () {
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
             this.userprofile.address = res.address;
+            this.userprofile.education = res.education;
             //  this.userprofile1=  plainToClass(userprofile,res);
             console.log(this.userprofile);
         }

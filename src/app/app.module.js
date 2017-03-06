@@ -22,13 +22,14 @@ var home_component_1 = require('./components/home/home.component');
 var profile_component_1 = require('./components/profile/profile.component');
 var settings_component_1 = require('./components/settings/settings.component');
 var address_component_1 = require('./components/settings/address.component');
+var education_component_1 = require('./components/settings/education.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, app_routing_1.routing, http_1.HttpModule, forms_1.FormsModule, forms_1.ReactiveFormsModule],
-            declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, profile_component_1.ProfileComponent, settings_component_1.SettingsComponent, address_component_1.AddressComponent],
+            declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, profile_component_1.ProfileComponent, settings_component_1.SettingsComponent, address_component_1.AddressComponent, education_component_1.EducationComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [
                 app_routing_1.appRoutingProviders,

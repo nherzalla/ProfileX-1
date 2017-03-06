@@ -8,7 +8,9 @@ import { Auth } from '../../services/auth.service';
 import { profileService } from '../../services/profile.service';
 import { userprofile } from '../../models/userprofile.model';
 import { address } from "../../models/address.model";
+import { education } from '../../models/education.model';
 import { AddressComponent } from '../settings/address.component';
+import { EducationComponent } from '../settings/education.component';
 
 
 
@@ -28,6 +30,7 @@ export class SettingsComponent {
     userprofile: userprofile = new userprofile();
     profileInfoform: FormGroup;
     addresses: address[];
+    educations: education[];
 
     constructor(private auth: Auth, private profileservice: profileService, private formBuilder: FormBuilder) {
         this.profileInfoform = this.formBuilder.group({
@@ -51,6 +54,7 @@ export class SettingsComponent {
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
             this.addresses = res.address;
+            this.educations = res.education;
         }
     }
 
@@ -66,22 +70,50 @@ export class SettingsComponent {
         this.addresses.reverse();
 
     }
+    addEducation(event: any) {
+        event.preventDefault();
+        var emptyeducation = new education();
+        this.educations.push(emptyeducation);
+        this.educations.reverse();
+    }
 
     deleteAddress(event: any, index: number, address: address) {
         event.preventDefault();
 
-       swal(
-                'Deleted!',
-                'Your file has been deleted.',
-                'warning'
-            )
+        swal(
+            'Deleted!',
+            'Your address has been deleted.',
+            'warning'
+        )
 
-         this.profileservice.deleteAddress(address)
-        .then(response=>
+        if (address.UniqId != null) {
+            this.profileservice.deleteAddress(address)
+                .then(response =>
                     //this.getData(response)
-                console.log(response)
-        );
-        this.addresses.splice(index,1);
+                    console.log(response)
+                );
+        }
+
+        this.addresses.splice(index, 1);
+    }
+
+    deleteEducation(event: any, index: number, education: education) {
+        event.preventDefault();
+
+        swal(
+            'Deleted!',
+            'Your education has been deleted.',
+            'warning'
+        )
+        if (education.UniqId != null) {
+            this.profileservice.deleteEducation(education)
+                .then(response =>
+                    //this.getData(response)
+                    console.log(response)
+                );
+
+        }
+        this.educations.splice(index, 1);
     }
 
 

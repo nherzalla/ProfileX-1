@@ -10,6 +10,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import {userprofile} from '../models/userprofile.model';
 import {address} from '../models/address.model';
+import{education} from '../models/education.model';
 
 @Injectable()
 
@@ -39,6 +40,14 @@ export class profileService{
         .then(response=>response.json() as userprofile[])
         .catch(this.handleError);
     }
+    addEducation(education:education[])
+    {
+        return this.authHttp
+        .post(this.profileUrl + "/inserteducation",education)
+        .toPromise()
+        .then(response=>response.json() as userprofile[])
+        .catch(this.handleError);
+    }
 
     updateAddress(address:address[])
     {
@@ -48,10 +57,26 @@ export class profileService{
         .then(response=>response.json() as userprofile[])
         .catch(this.handleError);
     }
+     updateEducation(education:education[])
+    {
+        return this.authHttp
+        .post(this.profileUrl + "/updateeducation",education)
+        .toPromise()
+        .then(response=>response.json() as userprofile[])
+        .catch(this.handleError);
+    }
     deleteAddress(address:address)
     {
         return this.authHttp
         .post(this.profileUrl + "/deleteaddress",address)
+        .toPromise()
+        .then(response=>response.json() as userprofile[])
+        .catch(this.handleError);
+    }
+    deleteEducation(education:education)
+    {
+        return this.authHttp
+        .post(this.profileUrl + "/deleteeducation",education)
         .toPromise()
         .then(response=>response.json() as userprofile[])
         .catch(this.handleError);
