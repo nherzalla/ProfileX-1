@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 
 
+
 import { Auth } from '../../services/auth.service';
 import { profileService } from '../../services/profile.service';
 import { userprofile } from '../../models/userprofile.model';
 import { address } from "../../models/address.model";
 import { education } from '../../models/education.model';
+import {experience} from '../../models/experience.model';
 import { AddressComponent } from '../settings/address.component';
 import { EducationComponent } from '../settings/education.component';
 
@@ -31,8 +33,12 @@ export class SettingsComponent {
     profileInfoform: FormGroup;
     addresses: address[];
     educations: education[];
+    experiences : experience[];
 
-    constructor(private auth: Auth, private profileservice: profileService, private formBuilder: FormBuilder) {
+
+    constructor(private auth: Auth, private profileservice: profileService, private formBuilder: FormBuilder) 
+    {
+
         this.profileInfoform = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required]
@@ -55,6 +61,7 @@ export class SettingsComponent {
             this.userprofile.lastName = res.lastName;
             this.addresses = res.address;
             this.educations = res.education;
+            this.experiences = res.experience;
         }
     }
 
@@ -75,6 +82,13 @@ export class SettingsComponent {
         var emptyeducation = new education();
         this.educations.push(emptyeducation);
         this.educations.reverse();
+    }
+    addExperience(event:any)
+    {
+        event.preventDefault();
+        var emptyexperience = new experience();
+        this.experiences.push(emptyexperience);
+        this.experiences.reverse();
     }
 
     deleteAddress(event: any, index: number, address: address) {
@@ -115,7 +129,24 @@ export class SettingsComponent {
         }
         this.educations.splice(index, 1);
     }
+    deleteExperience(event:any,index:number,experience:experience){
+        event.preventDefault();
 
+        swal(
+            'Deleted!',
+            'Your education has been deleted.',
+            'warning'
+        )
+        if (experience.UniqId != null) {
+            this.profileservice.deleteExperience(experience)
+                .then(response =>
+                    //this.getData(response)
+                    console.log(response)
+                );
+
+        }
+        this.experiences.splice(index, 1);
+    }
 
 
 

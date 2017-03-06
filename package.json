@@ -39,6 +39,7 @@
     "class-transformer": "^0.1.6",
     "core-js": "^2.4.1",
     "es6-shim": "^0.35.3",
+    "ng2-datepicker": "^1.8.0",
     "reflect-metadata": "^0.1.10",
     "rxjs": "5.0.1",
     "serializer.ts": "0.0.12",

@@ -6,7 +6,7 @@
                 <div class="list-group"><a href="#tabSetting1" data-toggle="tab" class="list-group-item">Profile</a>
                     <a href="#tabSetting2" data-toggle="tab" class="list-group-item">Addresses</a>
                     <a href="#tabSetting3" data-toggle="tab" class="list-group-item">Education</a>
-                    <a href="#tabSetting4" data-toggle="tab" class="list-group-item">Notifications</a>
+                    <a href="#tabSetting4" data-toggle="tab" class="list-group-item">Experience</a>
                     <a href="#tabSetting5" data-toggle="tab" class="list-group-item">Applications</a>
                 </div>
             </div>
@@ -88,57 +88,22 @@
                     </div>
                 </div>
                 <div id="tabSetting4" class="tab-pane">
-                    <form action="">
-                        <div class="panel b">
-                            <div class="panel-heading bg-gray-lighter text-bold">Notifications</div>
-                            <div class="panel-body bb">
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                             <input type="checkbox" value="">
-                                             <strong>Disable email notifications</strong>
-                                          </label>
-                                    </div>
+                    <div class="panel b">
+                        <div class="panel-heading bg-gray-lighter text-bold">Experience</div>
+                        <div class="panel-body">
+                            <button type="submit" class="btn btn-success col-md-12" (click)="addExperience($event)">Add Experience</button>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-body" *ngFor="let experience of experiences; let i = index">
+                                <div>
+                                    <a href="#" class="btn btn-danger col-md-12" (click)="deleteExperience($event,i,experience)">Delete</a>
+                                    <experience [experience]="experience">
+                                    </experience>
                                 </div>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    <strong>Interaction</strong>
-                                </p>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                             <input type="checkbox" value="">Alert me when someone start to follow me</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                             <input type="checkbox" value="">Alert me when someone star my work</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                             <input type="checkbox" value="">Alert me when post a new comment</label>
-                                    </div>
-                                </div>
-                                <p>
-                                    <strong>Marketing</strong>
-                                </p>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                             <input type="checkbox" value="">Send me news and interesting updates</label>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-info">Update notifications</button>
-                                <p>
-                                    <small class="text-muted">Mauris sodales accumsan erat, ut dapibus erat faucibus vitae.</small>
-                                </p>
+
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div id="tabSetting5" class="tab-pane">
                     <div class="panel b">

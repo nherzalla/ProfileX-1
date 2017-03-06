@@ -1,5 +1,7 @@
 import {address} from "./../models/address.model";
 import {education} from './../models/education.model';
+import {experience} from './../models/experience.model';
+
 
 
 export class userprofile
@@ -10,5 +12,6 @@ export class userprofile
         public lastName : string;
         public address : address[];
         public education : education[];
+        public experience : experience[];
 
 }

@@ -27,6 +27,7 @@ var profileService = (function () {
             .then(function (response) { return response.text; })
             .catch(this.handleError);
     };
+    /*---------------------------------------------Sub Arrays------------------------------------------------*/
     profileService.prototype.addAddress = function (address) {
         return this.authHttp
             .post(this.profileUrl + "/insertaddress", address)
@@ -37,6 +38,13 @@ var profileService = (function () {
     profileService.prototype.addEducation = function (education) {
         return this.authHttp
             .post(this.profileUrl + "/inserteducation", education)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    profileService.prototype.addExperience = function (experience) {
+        return this.authHttp
+            .post(this.profileUrl + "/insertexperience", experience)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -55,6 +63,13 @@ var profileService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    profileService.prototype.updateExperience = function (experience) {
+        return this.authHttp
+            .post(this.profileUrl + "/updateexperience", experience)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     profileService.prototype.deleteAddress = function (address) {
         return this.authHttp
             .post(this.profileUrl + "/deleteaddress", address)
@@ -69,6 +84,14 @@ var profileService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    profileService.prototype.deleteExperience = function (experience) {
+        return this.authHttp
+            .post(this.profileUrl + "/deleteexperience", experience)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /*---------------------------------------------Sub Arrays---------------------------------------------*/
     profileService.prototype.verifyProfilePromise = function () {
         return this.authHttp
             .get(this.profileUrl + "/profileverify")

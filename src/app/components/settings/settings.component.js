@@ -15,6 +15,7 @@ var profile_service_1 = require('../../services/profile.service');
 var userprofile_model_1 = require('../../models/userprofile.model');
 var address_model_1 = require("../../models/address.model");
 var education_model_1 = require('../../models/education.model');
+var experience_model_1 = require('../../models/experience.model');
 var SettingsComponent = (function () {
     function SettingsComponent(auth, profileservice, formBuilder) {
         var _this = this;
@@ -41,6 +42,7 @@ var SettingsComponent = (function () {
             this.userprofile.lastName = res.lastName;
             this.addresses = res.address;
             this.educations = res.education;
+            this.experiences = res.experience;
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
@@ -58,6 +60,12 @@ var SettingsComponent = (function () {
         var emptyeducation = new education_model_1.education();
         this.educations.push(emptyeducation);
         this.educations.reverse();
+    };
+    SettingsComponent.prototype.addExperience = function (event) {
+        event.preventDefault();
+        var emptyexperience = new experience_model_1.experience();
+        this.experiences.push(emptyexperience);
+        this.experiences.reverse();
     };
     SettingsComponent.prototype.deleteAddress = function (event, index, address) {
         event.preventDefault();
@@ -82,6 +90,18 @@ var SettingsComponent = (function () {
             });
         }
         this.educations.splice(index, 1);
+    };
+    SettingsComponent.prototype.deleteExperience = function (event, index, experience) {
+        event.preventDefault();
+        swal('Deleted!', 'Your education has been deleted.', 'warning');
+        if (experience.UniqId != null) {
+            this.profileservice.deleteExperience(experience)
+                .then(function (response) {
+                //this.getData(response)
+                return console.log(response);
+            });
+        }
+        this.experiences.splice(index, 1);
     };
     SettingsComponent = __decorate([
         core_1.Component({
