@@ -14,10 +14,10 @@ export class HomeComponent  {
   } 
   redirectRequest()
   {
-    if(this.auth.authenticated())
+   /* if(this.auth.authenticated())
     {
         this.router.navigateByUrl('/profile');
-    }
+    }*/
   }
 
 }

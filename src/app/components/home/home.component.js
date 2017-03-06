@@ -17,9 +17,10 @@ var HomeComponent = (function () {
         this.router = router;
     }
     HomeComponent.prototype.redirectRequest = function () {
-        if (this.auth.authenticated()) {
-            this.router.navigateByUrl('/profile');
-        }
+        /* if(this.auth.authenticated())
+         {
+             this.router.navigateByUrl('/profile');
+         }*/
     };
     HomeComponent = __decorate([
         core_1.Component({
