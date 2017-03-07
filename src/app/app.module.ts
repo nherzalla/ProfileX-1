@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MyDatePickerModule } from 'mydatepicker';
  
 
 import {routing,appRoutingProviders} from './app.routing';
@@ -27,7 +28,7 @@ import {ExperienceComponent} from './components/settings/experience.component';
 
 
 @NgModule({
-  imports:      [ BrowserModule,routing,HttpModule,FormsModule,ReactiveFormsModule],
+  imports:      [ BrowserModule,routing,HttpModule,FormsModule,ReactiveFormsModule,MyDatePickerModule],
   declarations: [ AppComponent,HomeComponent,ProfileComponent,SettingsComponent,AddressComponent,EducationComponent,ExperienceComponent],
   bootstrap:    [ AppComponent ],
   providers:[

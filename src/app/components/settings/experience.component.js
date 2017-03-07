@@ -17,6 +17,10 @@ var ExperienceComponent = (function () {
         this.formBuilder = formBuilder;
         this.auth = auth;
         this.profileservice = profileservice;
+        this.myDatePickerOptions = {
+            // other options...
+            dateFormat: 'dd.mm.yyyy'
+        };
         this.experienceform = this.formBuilder.group({
             companyname: ['', forms_1.Validators.required],
             jobtitle: ['', forms_1.Validators.required],
@@ -34,11 +38,23 @@ var ExperienceComponent = (function () {
         swal('Updated!', 'Your Education has been updated.', 'success');
     };
     ExperienceComponent.prototype.insertexperience = function (add) {
+        //   console.log(this.experience);
         this.profileservice.addExperience(this.experience)
             .then(function (response) {
             //this.getData(response)
             return console.log(response);
         });
+    };
+    ExperienceComponent.prototype.onDateChanged = function (event) {
+        this.experience.startdate = event.formatted.toString(); //new Date(event.formatted).toDateString();
+        //  console.log('onDateChanged(): ', event.date, ' - jsdate: ', new Date(event.jsdate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
+        if (event.formatted !== '') {
+        }
+        else {
+        }
+    };
+    ExperienceComponent.prototype.onEndDateChanged = function (event) {
+        this.experience.enddate = event.formatted.toString();
     };
     __decorate([
         core_1.Input(), 

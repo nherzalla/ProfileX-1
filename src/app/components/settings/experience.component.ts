@@ -1,5 +1,8 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl, NgForm, FormArray } from '@angular/forms';
+import {IMyOptions} from 'mydatepicker';
+import { IMyDateModel, IMyInputFieldChanged, IMyCalendarViewChanged} from    'mydatepicker/';
+
  
 
 
@@ -20,6 +23,14 @@ declare var swal: any;
 export class ExperienceComponent {
     @Input() experience: experience[]
     public experienceform: FormGroup;
+
+    private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'dd.mm.yyyy'
+    };
+
+    
+
 
 
     constructor(private formBuilder: FormBuilder, private auth: Auth, private profileservice: profileService) 
@@ -48,11 +59,32 @@ export class ExperienceComponent {
 
     }
     insertexperience(add: any) {
-        this.profileservice.addExperience(this.experience)
+    
+  //   console.log(this.experience);
+       this.profileservice.addExperience(this.experience)
             .then(response =>
                 //this.getData(response)
                 console.log(response)
             );
+    }
+     onDateChanged(event: IMyDateModel) {
+       
+       this.experience.startdate = event.formatted.toString();//new Date(event.formatted).toDateString();
+      //  console.log('onDateChanged(): ', event.date, ' - jsdate: ', new Date(event.jsdate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
+        if(event.formatted !== '') {
+         //   this.selectedTextNormal = 'Formatted: ' + event.formatted + ' - epoc timestamp: ' + event.epoc;
+          //  this.border = '1px solid #CCC';
+
+            //this.selectedDateNormal = event.formatted;
+        }
+        else {
+            //this.selectedTextNormal = '';
+            //this.border = 'none';
+        }
+    }
+    onEndDateChanged(event:IMyDateModel)
+    {
+        this.experience.enddate = event.formatted.toString();
     }
 
 
