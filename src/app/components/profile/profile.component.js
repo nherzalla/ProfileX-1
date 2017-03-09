@@ -9,17 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var platform_browser_1 = require('@angular/platform-browser');
 var auth_service_1 = require('../../services/auth.service');
 var profile_service_1 = require('../../services/profile.service');
 var userprofile_model_1 = require('../../models/userprofile.model');
 var ProfileComponent = (function () {
-    function ProfileComponent(auth, profileservice) {
+    function ProfileComponent(auth, profileservice, sanitizer) {
         var _this = this;
         this.auth = auth;
         this.profileservice = profileservice;
+        this.sanitizer = sanitizer;
         this.userprofile = new userprofile_model_1.userprofile();
         //userprofile:userprofile[];
         this.userprofile1 = new userprofile_model_1.userprofile();
+        this.sanitizer = sanitizer;
         this.profile = JSON.parse(localStorage.getItem('profile'));
         /*    this.profileservice.verifyProfile()
                      .map(res => res.json())
@@ -35,7 +38,26 @@ var ProfileComponent = (function () {
             .then(function (response) {
             return _this.getData(response);
         });
+        this.profileservice.getProfileImage()
+            .then(function (response) {
+            return _this.getImageData(response);
+        });
+        //testing image download
     }
+    ProfileComponent.prototype.getImageData = function (res) {
+        //   let myBlob: Blob = new Blob([res], {type: 'image/jpeg'}); // replace the type by whatever type is your response
+        var fileURL = URL.createObjectURL(res);
+        //this.userprofile.imageURL
+        this.trustedImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fileURL); // instance.sanitization.bypassSecurityTrustStylefileURL;
+        return this.trustedImageUrl;
+        // Cross your fingers at this point and pray whatever you're used to pray
+        //  console.log(fileURL);
+        // this.userprofile.imageURL = fileURL;
+        // window.open(fileURL);
+        /*console.log(res);
+         this.userprofile = new userprofile();
+         this.userprofile.imageURL = res;*/
+    };
     ProfileComponent.prototype.getData = function (res) {
         if (res.length == 0) {
             console.log("object is empty");
@@ -61,7 +83,7 @@ var ProfileComponent = (function () {
             selector: 'profile',
             templateUrl: "profile.component.html",
         }), 
-        __metadata('design:paramtypes', [auth_service_1.Auth, profile_service_1.profileService])
+        __metadata('design:paramtypes', [auth_service_1.Auth, profile_service_1.profileService, platform_browser_1.DomSanitizer])
     ], ProfileComponent);
     return ProfileComponent;
 }());

@@ -10,6 +10,7 @@ export class userprofile
         public Email : string;
         public firstName: string;
         public lastName : string;
+        public imageURL : string;
         public address : address[];
         public education : education[];
         public experience : experience[];

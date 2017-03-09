@@ -27,6 +27,13 @@ var profileService = (function () {
             .then(function (response) { return response.text; })
             .catch(this.handleError);
     };
+    profileService.prototype.getProfileImage = function () {
+        return this.authHttp
+            .get(this.profileUrl + "/getprofileimage")
+            .toPromise()
+            .then(function (response) { return response.text; })
+            .catch(this.handleError);
+    };
     profileService.prototype.updateProfile = function (userprofile, fileToUpload) {
         var formData = new FormData();
         formData.append("firstName", userprofile.firstName);

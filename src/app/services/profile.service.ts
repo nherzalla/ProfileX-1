@@ -30,6 +30,14 @@ export class profileService {
             .then(response => response.text)
             .catch(this.handleError);
     }
+    getProfileImage()
+    {
+        return this.authHttp
+            .get(this.profileUrl+ "/getprofileimage")
+            .toPromise()
+            .then(response => response.text)
+            .catch(this.handleError);
+    }
     updateProfile(userprofile: userprofile, fileToUpload: any) 
     {
         let formData = new FormData();
