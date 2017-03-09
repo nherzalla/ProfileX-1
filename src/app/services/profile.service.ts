@@ -30,6 +30,19 @@ export class profileService {
             .then(response => response.text)
             .catch(this.handleError);
     }
+    updateProfile(userprofile: userprofile, fileToUpload: any) 
+    {
+        let formData = new FormData();
+        formData.append("firstName", userprofile.firstName);
+        formData.append("lastName", userprofile.lastName);
+        formData.append("file", fileToUpload);
+        return this.authHttp
+            .post(this.profileUrl + "/updateprofile", formData)
+            .toPromise()
+            .then(response => response.json() as userprofile[])
+            .catch(this.handleError);
+
+    }
     /*---------------------------------------------Sub Arrays------------------------------------------------*/
     addAddress(address: address[]) {
         return this.authHttp
@@ -88,9 +101,8 @@ export class profileService {
             .then(response => response.json() as userprofile[])
             .catch(this.handleError);
     }
-    deleteExperience(experience:experience)
-    {
-         return this.authHttp
+    deleteExperience(experience: experience) {
+        return this.authHttp
             .post(this.profileUrl + "/deleteexperience", experience)
             .toPromise()
             .then(response => response.json() as userprofile[])

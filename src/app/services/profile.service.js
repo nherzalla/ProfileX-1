@@ -27,6 +27,17 @@ var profileService = (function () {
             .then(function (response) { return response.text; })
             .catch(this.handleError);
     };
+    profileService.prototype.updateProfile = function (userprofile, fileToUpload) {
+        var formData = new FormData();
+        formData.append("firstName", userprofile.firstName);
+        formData.append("lastName", userprofile.lastName);
+        formData.append("file", fileToUpload);
+        return this.authHttp
+            .post(this.profileUrl + "/updateprofile", formData)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     /*---------------------------------------------Sub Arrays------------------------------------------------*/
     profileService.prototype.addAddress = function (address) {
         return this.authHttp

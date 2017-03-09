@@ -46,7 +46,7 @@ var ExperienceComponent = (function () {
         });
     };
     ExperienceComponent.prototype.onDateChanged = function (event) {
-        this.experience.startdate = event.formatted.toString(); //new Date(event.formatted).toDateString();
+        //   this.experience.startdate = event.formatted.toString();//new Date(event.formatted).toDateString();
         //  console.log('onDateChanged(): ', event.date, ' - jsdate: ', new Date(event.jsdate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
         if (event.formatted !== '') {
         }
@@ -54,7 +54,7 @@ var ExperienceComponent = (function () {
         }
     };
     ExperienceComponent.prototype.onEndDateChanged = function (event) {
-        this.experience.enddate = event.formatted.toString();
+        // this.experience.enddate = event.formatted.toString();
     };
     __decorate([
         core_1.Input(), 

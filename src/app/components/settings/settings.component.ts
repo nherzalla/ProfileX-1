@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl, NgForm, FormArray } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,7 +10,7 @@ import { profileService } from '../../services/profile.service';
 import { userprofile } from '../../models/userprofile.model';
 import { address } from "../../models/address.model";
 import { education } from '../../models/education.model';
-import {experience} from '../../models/experience.model';
+import { experience } from '../../models/experience.model';
 import { AddressComponent } from '../settings/address.component';
 import { EducationComponent } from '../settings/education.component';
 
@@ -33,11 +33,11 @@ export class SettingsComponent {
     profileInfoform: FormGroup;
     addresses: address[];
     educations: education[];
-    experiences : experience[];
+    experiences: experience[];
+    @ViewChild("fileInput") fileInput: any;
 
 
-    constructor(private auth: Auth, private profileservice: profileService, private formBuilder: FormBuilder) 
-    {
+    constructor(private auth: Auth, private profileservice: profileService, private formBuilder: FormBuilder) {
 
         this.profileInfoform = this.formBuilder.group({
             firstName: ['', Validators.required],
@@ -65,9 +65,25 @@ export class SettingsComponent {
         }
     }
 
-    saveprofileInfo(profileInfoform: NgForm) {//have to change it later.....
-        console.log(this.userprofile);
-        console.log(this.userprofile.address);
+    saveprofileInfo(profileInfoform: NgForm) {
+        
+        let fi = this.fileInput.nativeElement;
+        var fileToUpload = null;
+        if (fi.files && fi.files[0]) 
+        {
+            fileToUpload = fi.files[0];
+        }
+        this.profileservice.updateProfile(this.userprofile, fileToUpload)
+                .then(response =>
+                    //this.getData(response)
+                    console.log(response)
+                );
+
+
+
+
+        //console.log(this.userprofile);
+        //console.log(this.userprofile.address);
     }
 
     addAddress(event: any) {
@@ -83,8 +99,7 @@ export class SettingsComponent {
         this.educations.push(emptyeducation);
         this.educations.reverse();
     }
-    addExperience(event:any)
-    {
+    addExperience(event: any) {
         event.preventDefault();
         var emptyexperience = new experience();
         this.experiences.push(emptyexperience);
@@ -129,7 +144,7 @@ export class SettingsComponent {
         }
         this.educations.splice(index, 1);
     }
-    deleteExperience(event:any,index:number,experience:experience){
+    deleteExperience(event: any, index: number, experience: experience) {
         event.preventDefault();
 
         swal(

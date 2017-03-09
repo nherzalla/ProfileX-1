@@ -51,7 +51,7 @@ export class ExperienceComponent {
                 console.log(response)
             );
 
-        swal(
+      swal(
             'Updated!',
             'Your Education has been updated.',
             'success'
@@ -69,7 +69,7 @@ export class ExperienceComponent {
     }
      onDateChanged(event: IMyDateModel) {
        
-       this.experience.startdate = event.formatted.toString();//new Date(event.formatted).toDateString();
+    //   this.experience.startdate = event.formatted.toString();//new Date(event.formatted).toDateString();
       //  console.log('onDateChanged(): ', event.date, ' - jsdate: ', new Date(event.jsdate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
         if(event.formatted !== '') {
          //   this.selectedTextNormal = 'Formatted: ' + event.formatted + ' - epoc timestamp: ' + event.epoc;
@@ -84,7 +84,7 @@ export class ExperienceComponent {
     }
     onEndDateChanged(event:IMyDateModel)
     {
-        this.experience.enddate = event.formatted.toString();
+       // this.experience.enddate = event.formatted.toString();
     }
 
 

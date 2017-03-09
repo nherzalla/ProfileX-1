@@ -46,8 +46,18 @@ var SettingsComponent = (function () {
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
-        console.log(this.userprofile);
-        console.log(this.userprofile.address);
+        var fi = this.fileInput.nativeElement;
+        var fileToUpload = null;
+        if (fi.files && fi.files[0]) {
+            fileToUpload = fi.files[0];
+        }
+        this.profileservice.updateProfile(this.userprofile, fileToUpload)
+            .then(function (response) {
+            //this.getData(response)
+            return console.log(response);
+        });
+        //console.log(this.userprofile);
+        //console.log(this.userprofile.address);
     };
     SettingsComponent.prototype.addAddress = function (event) {
         event.preventDefault();
@@ -103,6 +113,10 @@ var SettingsComponent = (function () {
         }
         this.experiences.splice(index, 1);
     };
+    __decorate([
+        core_1.ViewChild("fileInput"), 
+        __metadata('design:type', Object)
+    ], SettingsComponent.prototype, "fileInput", void 0);
     SettingsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

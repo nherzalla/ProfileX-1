@@ -37,7 +37,7 @@ export class EducationComponent {
                 console.log(response)
         );
 
-          swal(
+         swal(
                 'Updated!',
                 'Your Education has been updated.',
                 'success'

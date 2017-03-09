@@ -41,7 +41,7 @@ export class AddressComponent {
                 console.log(response)
         );
 
-          swal(
+         swal(
                 'Updated!',
                 'Your address has been updated.',
                 'success'

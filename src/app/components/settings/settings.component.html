@@ -17,10 +17,10 @@
                     <div class="panel b">
                         <div class="panel-heading bg-gray-lighter text-bold">Profile</div>
                         <div class="panel-body">
-                            <form [formGroup]="profileInfoform" (submit)="saveprofileInfo(profileInfoform)" novalidate>
+                            <form [formGroup]="profileInfoform" (submit)="saveprofileInfo(profileInfoform)" novalidate enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Picture</label>
-                                    <input type="file" data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline" data-buttontext="Upload new picture"
+                                    <input type="file" #fileInput data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline" data-buttontext="Upload new picture"
                                         data-iconname="fa fa-upload mr" class="form-control filestyle" id="filestyle-0" tabindex="-1"
                                         style="position: absolute; clip: rect(0px 0px 0px 0px);">
                                     <div class="bootstrap-filestyle input-group"><span class="group-span-filestyle " tabindex="0"><label for="filestyle-0" class="btn btn-default "><span class="icon-span-filestyle fa fa-upload mr"></span>                                        <span class="buttonText">Upload new picture</span></label>
@@ -30,12 +30,12 @@
                                 <div class="form-group">
                                     <label>First Name</label>
                                     <!--<input type="text" class="form-control" name="firstName" [(ngModel)]="userprofile.firstName">-->
-                                    <input type="text" class="form-control" [formControl]="profileInfoform.controls.firstName" [(ngModel)]="userprofile.firstName">
+                                    <input type="text" name="firstName" class="form-control" [formControl]="profileInfoform.controls.firstName" [(ngModel)]="userprofile.firstName">
 
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" [formControl]="profileInfoform.controls.lastName" [(ngModel)]="userprofile.lastName">
+                                    <input type="text" name="lastName" class="form-control" [formControl]="profileInfoform.controls.lastName" [(ngModel)]="userprofile.lastName">
                                 </div>
 
                                 <div class="form-group">
