@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response,BrowserXhr } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -15,14 +15,17 @@ import { experience } from '../models/experience.model';
 
 @Injectable()
 
-export class profileService {
+export class profileService  {
 
     private profileUrl = "http://localhost:54490/api/Profile";
+    private http:Http;
+   private authHttp: AuthHttp;
 
-    constructor(private http: Http, private authHttp: AuthHttp) {
-
+    constructor(http: Http,  authHttp: AuthHttp) 
+    {
+        this.http = http;
+        this.authHttp = authHttp;
     }
-
     getProfile() {
         return this.authHttp
             .get(this.profileUrl)
@@ -36,11 +39,19 @@ export class profileService {
         return this.authHttp
             .get(this.profileUrl+ "/getprofileimage",)
             .toPromise()
-            .then(response => response.text)
+            .then(res =>{
+                    //this.logger.debug(res);
+                    console.log('1');
+                if(res.headers.get("Content-Type").startsWith("image/"))
+                {
+                    return res;
+                }
+                return res.json();
+            })
             .catch(this.handleError);
     }
 
-    updateProfile(firstName: string,lastName:string, fileToUpload: any) 
+  /*  updateProfile(firstName: string,lastName:string, fileToUpload: any) 
     {
         let formData = new FormData();
         formData.append("firstName", firstName);
@@ -52,7 +63,7 @@ export class profileService {
             .then(response => response.json() as userprofile[])
             .catch(this.handleError);
 
-    }
+    }*/
     /*---------------------------------------------Sub Arrays------------------------------------------------*/
     addAddress(address: address[]) {
         return this.authHttp

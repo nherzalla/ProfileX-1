@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+
 import {Auth} from '../../services/auth.service';
 import {profileService} from '../../services/profile.service';
 import {userprofile} from '../../models/userprofile.model';
@@ -17,14 +19,16 @@ import {classToPlain} from "class-transformer";
 })
 export class ProfileComponent  { 
     profile:any;
+   
     userprofile: userprofile= new userprofile();
     //userprofile:userprofile[];
     userprofile1:userprofile= new userprofile();
+    trustedImageUrl : SafeUrl;
+    src:any;
 
-
-    constructor(private auth:Auth,private profileservice:profileService)
+    constructor(private auth:Auth,private profileservice:profileService, private sanitizer: DomSanitizer)
     {
-       
+        this.sanitizer = sanitizer;   
         this.profile = JSON.parse(localStorage.getItem('profile'));
    /*    this.profileservice.verifyProfile()
                 .map(res => res.json())
@@ -42,15 +46,52 @@ export class ProfileComponent  {
                     this.getData(response)
             );
 
+        this.profileservice.getProfileImage()
+            .then(response=>
+                  this.getImageData(response)
+            );
             //testing image download
 
         
       
     } 
-
+    getImageData(res:any)
+    {
+        var blob = new Blob([new Uint8Array(res._body)],{
+            type: res.headers.get("Content-Type")
+        });
+        var urlCreator = window.URL;
+        var url = urlCreator.createObjectURL(blob);
         
-      
+        //console.log(url);
 
+      //  this.trustedImageUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(url);
+       
+        this.src =  url;
+        //let binary = new Uint8Array(res);
+       
+        //let blob = new Blob([binary],{type: 'image/jpeg'});
+        
+
+
+      //  let myBlob: Blob = new Blob([res], {type: 'image/jpeg'}); // replace the type by whatever type is your response
+
+        //var fileURL = URL.createObjectURL(blob);
+      //  console.log(fileURL);
+     //this.userprofile.imageURL
+      //this.trustedImageUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(fileURL);// instance.sanitization.bypassSecurityTrustStylefileURL;
+     // console.log(this.trustedImageUrl);
+
+    // Cross your fingers at this point and pray whatever you're used to pray
+  //  console.log(fileURL);
+   
+   // this.userprofile.imageURL = fileURL;
+   // window.open(fileURL);
+
+        /*console.log(res);
+         this.userprofile = new userprofile();
+         this.userprofile.imageURL = res;*/
+    }
     getData(res:any)
     {
         if(res.length== 0)
@@ -67,6 +108,7 @@ export class ProfileComponent  {
             this.userprofile.address = res.address;
             this.userprofile.education = res.education;
             this.userprofile.experience = res.experience;
+
             
           //  this.userprofile1=  plainToClass(userprofile,res);
             console.log( this.userprofile);

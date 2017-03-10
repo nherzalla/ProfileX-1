@@ -67,7 +67,7 @@ export class SettingsComponent {
 
     saveprofileInfo(profileInfoform: NgForm) {
         
-      let fi = this.fileInput.nativeElement;
+     /* let fi = this.fileInput.nativeElement;
         var fileToUpload = null;
         if (fi.files && fi.files[0]) 
         {
@@ -77,13 +77,7 @@ export class SettingsComponent {
                 .then(response =>
                     //this.getData(response)
                     console.log(response)
-                );
-
-
-
-
-        //console.log(this.userprofile);
-        //console.log(this.userprofile.address);
+                );*/
     }
 
     addAddress(event: any) {

@@ -47,18 +47,17 @@ var SettingsComponent = (function () {
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
-        var fi = this.fileInput.nativeElement;
-        var fileToUpload = null;
-        if (fi.files && fi.files[0]) {
-            fileToUpload = fi.files[0];
-        }
-        this.profileservice.updateProfile(this.userprofile.firstName, this.userprofile.lastName, fileToUpload)
-            .then(function (response) {
-            //this.getData(response)
-            return console.log(response);
-        });
-        //console.log(this.userprofile);
-        //console.log(this.userprofile.address);
+        /* let fi = this.fileInput.nativeElement;
+           var fileToUpload = null;
+           if (fi.files && fi.files[0])
+           {
+               fileToUpload = fi.files[0];
+           }
+           this.profileservice.updateProfile(this.userprofile.firstName,this.userprofile.lastName, fileToUpload)
+                   .then(response =>
+                       //this.getData(response)
+                       console.log(response)
+                   );*/
     };
     SettingsComponent.prototype.addAddress = function (event) {
         event.preventDefault();

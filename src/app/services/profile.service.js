@@ -16,9 +16,9 @@ require('rxjs/add/operator/catch');
 require('rxjs/add/operator/toPromise');
 var profileService = (function () {
     function profileService(http, authHttp) {
+        this.profileUrl = "http://localhost:54490/api/Profile";
         this.http = http;
         this.authHttp = authHttp;
-        this.profileUrl = "http://localhost:54490/api/Profile";
     }
     profileService.prototype.getProfile = function () {
         return this.authHttp
@@ -31,20 +31,29 @@ var profileService = (function () {
         return this.authHttp
             .get(this.profileUrl + "/getprofileimage")
             .toPromise()
-            .then(function (response) { return response.text; })
+            .then(function (res) {
+            //this.logger.debug(res);
+            console.log('1');
+            if (res.headers.get("Content-Type").startsWith("image/")) {
+                return res;
+            }
+            return res.json();
+        })
             .catch(this.handleError);
     };
-    profileService.prototype.updateProfile = function (firstName, lastName, fileToUpload) {
-        var formData = new FormData();
-        formData.append("firstName", firstName);
-        formData.append("lastName", lastName);
-        formData.append("file", fileToUpload);
-        return this.authHttp
-            .post(this.profileUrl + "/updateprofile", formData)
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
+    /*  updateProfile(firstName: string,lastName:string, fileToUpload: any)
+      {
+          let formData = new FormData();
+          formData.append("firstName", firstName);
+          formData.append("lastName", lastName);
+          formData.append("file", fileToUpload);
+          return this.authHttp
+              .post(this.profileUrl + "/updateprofile", formData)
+              .toPromise()
+              .then(response => response.json() as userprofile[])
+              .catch(this.handleError);
+  
+      }*/
     /*---------------------------------------------Sub Arrays------------------------------------------------*/
     profileService.prototype.addAddress = function (address) {
         return this.authHttp
