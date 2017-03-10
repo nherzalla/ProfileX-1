@@ -33,7 +33,7 @@ export class profileService {
     getProfileImage()
     {
         return this.authHttp
-            .get(this.profileUrl+ "/getprofileimage")
+            .get(this.profileUrl+ "/getprofileimage",)
             .toPromise()
             .then(response => response.text)
             .catch(this.handleError);

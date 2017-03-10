@@ -45,11 +45,14 @@ var ProfileComponent = (function () {
         //testing image download
     }
     ProfileComponent.prototype.getImageData = function (res) {
-        //   let myBlob: Blob = new Blob([res], {type: 'image/jpeg'}); // replace the type by whatever type is your response
-        var fileURL = URL.createObjectURL(res);
+        var binary = new Uint8Array(res);
+        var blob = new Blob([binary], { type: 'image/jpeg' });
+        //  let myBlob: Blob = new Blob([res], {type: 'image/jpeg'}); // replace the type by whatever type is your response
+        var fileURL = URL.createObjectURL(blob);
+        //  console.log(fileURL);
         //this.userprofile.imageURL
         this.trustedImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fileURL); // instance.sanitization.bypassSecurityTrustStylefileURL;
-        return this.trustedImageUrl;
+        console.log(this.trustedImageUrl);
         // Cross your fingers at this point and pray whatever you're used to pray
         //  console.log(fileURL);
         // this.userprofile.imageURL = fileURL;

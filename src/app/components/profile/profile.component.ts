@@ -47,23 +47,29 @@ export class ProfileComponent  {
 
         this.profileservice.getProfileImage()
             .then(response=>
-                   this.getImageData(response)
+                  this.getImageData(response)
             );
-
             //testing image download
 
         
       
     } 
-    getImageData(res:any):SafeUrl
+    getImageData(res:any)
     {
-     //   let myBlob: Blob = new Blob([res], {type: 'image/jpeg'}); // replace the type by whatever type is your response
 
-     var fileURL = URL.createObjectURL(res);
+        let binary = new Uint8Array(res);
+       
+        let blob = new Blob([binary],{type: 'image/jpeg'});
+        
+
+
+      //  let myBlob: Blob = new Blob([res], {type: 'image/jpeg'}); // replace the type by whatever type is your response
+
+        var fileURL = URL.createObjectURL(blob);
+      //  console.log(fileURL);
      //this.userprofile.imageURL
       this.trustedImageUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(fileURL);// instance.sanitization.bypassSecurityTrustStylefileURL;
-      
-        return this.trustedImageUrl;
+      console.log(this.trustedImageUrl);
 
     // Cross your fingers at this point and pray whatever you're used to pray
   //  console.log(fileURL);
