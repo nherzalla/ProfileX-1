@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var profile_service_1 = require('../../services/profile.service');
 var auth_service_1 = require('../../services/auth.service');
+//declare var swal: any;
 var ExperienceComponent = (function () {
     function ExperienceComponent(formBuilder, auth, profileservice) {
         this.formBuilder = formBuilder;
@@ -35,7 +36,11 @@ var ExperienceComponent = (function () {
             //this.getData(response)
             return console.log(response);
         });
-        swal('Updated!', 'Your Education has been updated.', 'success');
+        /*   swal(
+                 'Updated!',
+                 'Your Education has been updated.',
+                 'success'
+             )*/
     };
     ExperienceComponent.prototype.insertexperience = function (add) {
         //   console.log(this.experience);

@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var profile_service_1 = require('../../services/profile.service');
 var auth_service_1 = require('../../services/auth.service');
+//declare var swal: any;
 var EducationComponent = (function () {
     function EducationComponent(formBuilder, auth, profileservice) {
         this.formBuilder = formBuilder;
@@ -28,7 +29,11 @@ var EducationComponent = (function () {
             //this.getData(response)
             return console.log(response);
         });
-        swal('Updated!', 'Your Education has been updated.', 'success');
+        /*    swal(
+                   'Updated!',
+                   'Your Education has been updated.',
+                   'success'
+               )*/
     };
     EducationComponent.prototype.inserteducation = function (add) {
         this.profileservice.addEducation(this.education)

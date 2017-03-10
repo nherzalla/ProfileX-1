@@ -16,6 +16,7 @@ var userprofile_model_1 = require('../../models/userprofile.model');
 var address_model_1 = require("../../models/address.model");
 var education_model_1 = require('../../models/education.model');
 var experience_model_1 = require('../../models/experience.model');
+///declare var swal: any;
 var SettingsComponent = (function () {
     function SettingsComponent(auth, profileservice, formBuilder) {
         var _this = this;
@@ -51,7 +52,7 @@ var SettingsComponent = (function () {
         if (fi.files && fi.files[0]) {
             fileToUpload = fi.files[0];
         }
-        this.profileservice.updateProfile(this.userprofile, fileToUpload)
+        this.profileservice.updateProfile(this.userprofile.firstName, this.userprofile.lastName, fileToUpload)
             .then(function (response) {
             //this.getData(response)
             return console.log(response);
@@ -79,7 +80,11 @@ var SettingsComponent = (function () {
     };
     SettingsComponent.prototype.deleteAddress = function (event, index, address) {
         event.preventDefault();
-        swal('Deleted!', 'Your address has been deleted.', 'warning');
+        /*  swal(
+              'Deleted!',
+              'Your address has been deleted.',
+              'warning'
+          )*/
         if (address.UniqId != null) {
             this.profileservice.deleteAddress(address)
                 .then(function (response) {
@@ -91,7 +96,11 @@ var SettingsComponent = (function () {
     };
     SettingsComponent.prototype.deleteEducation = function (event, index, education) {
         event.preventDefault();
-        swal('Deleted!', 'Your education has been deleted.', 'warning');
+        /*   swal(
+               'Deleted!',
+               'Your education has been deleted.',
+               'warning'
+           )*/
         if (education.UniqId != null) {
             this.profileservice.deleteEducation(education)
                 .then(function (response) {
@@ -103,7 +112,11 @@ var SettingsComponent = (function () {
     };
     SettingsComponent.prototype.deleteExperience = function (event, index, experience) {
         event.preventDefault();
-        swal('Deleted!', 'Your education has been deleted.', 'warning');
+        /*    swal(
+                'Deleted!',
+                'Your education has been deleted.',
+                'warning'
+            )*/
         if (experience.UniqId != null) {
             this.profileservice.deleteExperience(experience)
                 .then(function (response) {

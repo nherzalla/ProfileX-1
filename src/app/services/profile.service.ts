@@ -30,7 +30,7 @@ export class profileService {
             .then(response => response.text)
             .catch(this.handleError);
     }
-<<<<<<< HEAD
+
     getProfileImage()
     {
         return this.authHttp
@@ -39,13 +39,12 @@ export class profileService {
             .then(response => response.text)
             .catch(this.handleError);
     }
-=======
->>>>>>> parent of e0a4856... Download File not complete
-    updateProfile(userprofile: userprofile, fileToUpload: any) 
+
+    updateProfile(firstName: string,lastName:string, fileToUpload: any) 
     {
         let formData = new FormData();
-        formData.append("firstName", userprofile.firstName);
-        formData.append("lastName", userprofile.lastName);
+        formData.append("firstName", firstName);
+        formData.append("lastName", lastName);
         formData.append("file", fileToUpload);
         return this.authHttp
             .post(this.profileUrl + "/updateprofile", formData)

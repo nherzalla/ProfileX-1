@@ -34,10 +34,10 @@ var profileService = (function () {
             .then(function (response) { return response.text; })
             .catch(this.handleError);
     };
-    profileService.prototype.updateProfile = function (userprofile, fileToUpload) {
+    profileService.prototype.updateProfile = function (firstName, lastName, fileToUpload) {
         var formData = new FormData();
-        formData.append("firstName", userprofile.firstName);
-        formData.append("lastName", userprofile.lastName);
+        formData.append("firstName", firstName);
+        formData.append("lastName", lastName);
         formData.append("file", fileToUpload);
         return this.authHttp
             .post(this.profileUrl + "/updateprofile", formData)

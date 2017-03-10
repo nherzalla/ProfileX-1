@@ -12,7 +12,7 @@ import { Auth } from '../../services/auth.service';
 
 import { experience } from '../../models/experience.model';
 
-declare var swal: any;
+//declare var swal: any;
 @Component({
     moduleId: module.id,
     selector: 'experience',
@@ -51,11 +51,11 @@ export class ExperienceComponent {
                 console.log(response)
             );
 
-      swal(
+   /*   swal(
             'Updated!',
             'Your Education has been updated.',
             'success'
-        )
+        )*/
 
     }
     insertexperience(add: any) {

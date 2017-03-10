@@ -8,7 +8,7 @@ import {Auth} from '../../services/auth.service';
 
 import {education} from '../../models/education.model';
 
-declare var swal: any;
+//declare var swal: any;
 @Component({
     moduleId: module.id,
     selector: 'education',
@@ -37,11 +37,11 @@ export class EducationComponent {
                 console.log(response)
         );
 
-         swal(
+     /*    swal(
                 'Updated!',
                 'Your Education has been updated.',
                 'success'
-            )
+            )*/
 
     }
     inserteducation(add:any)

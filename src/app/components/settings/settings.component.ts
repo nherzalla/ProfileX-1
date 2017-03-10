@@ -20,7 +20,7 @@ import { plainToClass } from "class-transformer";
 import { deserialize } from "class-transformer";
 import { classToPlain } from "class-transformer";
 
-declare var swal: any;
+///declare var swal: any;
 
 @Component({
     moduleId: module.id,
@@ -67,13 +67,13 @@ export class SettingsComponent {
 
     saveprofileInfo(profileInfoform: NgForm) {
         
-        let fi = this.fileInput.nativeElement;
+      let fi = this.fileInput.nativeElement;
         var fileToUpload = null;
         if (fi.files && fi.files[0]) 
         {
             fileToUpload = fi.files[0];
         }
-        this.profileservice.updateProfile(this.userprofile, fileToUpload)
+        this.profileservice.updateProfile(this.userprofile.firstName,this.userprofile.lastName, fileToUpload)
                 .then(response =>
                     //this.getData(response)
                     console.log(response)
@@ -109,11 +109,11 @@ export class SettingsComponent {
     deleteAddress(event: any, index: number, address: address) {
         event.preventDefault();
 
-        swal(
+      /*  swal(
             'Deleted!',
             'Your address has been deleted.',
             'warning'
-        )
+        )*/
 
         if (address.UniqId != null) {
             this.profileservice.deleteAddress(address)
@@ -129,11 +129,11 @@ export class SettingsComponent {
     deleteEducation(event: any, index: number, education: education) {
         event.preventDefault();
 
-        swal(
+     /*   swal(
             'Deleted!',
             'Your education has been deleted.',
             'warning'
-        )
+        )*/
         if (education.UniqId != null) {
             this.profileservice.deleteEducation(education)
                 .then(response =>
@@ -147,11 +147,11 @@ export class SettingsComponent {
     deleteExperience(event: any, index: number, experience: experience) {
         event.preventDefault();
 
-        swal(
+    /*    swal(
             'Deleted!',
             'Your education has been deleted.',
             'warning'
-        )
+        )*/
         if (experience.UniqId != null) {
             this.profileservice.deleteExperience(experience)
                 .then(response =>
