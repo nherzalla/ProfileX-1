@@ -41,19 +41,17 @@ var profileService = (function () {
         })
             .catch(this.handleError);
     };
-    /*  updateProfile(firstName: string,lastName:string, fileToUpload: any)
-      {
-          let formData = new FormData();
-          formData.append("firstName", firstName);
-          formData.append("lastName", lastName);
-          formData.append("file", fileToUpload);
-          return this.authHttp
-              .post(this.profileUrl + "/updateprofile", formData)
-              .toPromise()
-              .then(response => response.json() as userprofile[])
-              .catch(this.handleError);
-  
-      }*/
+    profileService.prototype.updateProfile = function (profile) {
+        var formData = new FormData();
+        formData.append("firstName", profile.firstName);
+        formData.append("lastName", profile.lastName);
+        formData.append("file", profile.fileToUpload);
+        return this.authHttp
+            .post(this.profileUrl + "/updateprofile", formData)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     /*---------------------------------------------Sub Arrays------------------------------------------------*/
     profileService.prototype.addAddress = function (address) {
         return this.authHttp

@@ -12,6 +12,7 @@ import { userprofile } from '../models/userprofile.model';
 import { address } from '../models/address.model';
 import { education } from '../models/education.model';
 import { experience } from '../models/experience.model';
+import {profile} from '../models/profile.model';
 
 @Injectable()
 
@@ -19,7 +20,8 @@ export class profileService  {
 
     private profileUrl = "http://localhost:54490/api/Profile";
     private http:Http;
-   private authHttp: AuthHttp;
+    private authHttp: AuthHttp;
+  
 
     constructor(http: Http,  authHttp: AuthHttp) 
     {
@@ -51,19 +53,19 @@ export class profileService  {
             .catch(this.handleError);
     }
 
-  /*  updateProfile(firstName: string,lastName:string, fileToUpload: any) 
+    updateProfile(profile:profile) 
     {
-        let formData = new FormData();
-        formData.append("firstName", firstName);
-        formData.append("lastName", lastName);
-        formData.append("file", fileToUpload);
+       let formData = new FormData();
+        formData.append("firstName",profile.firstName);
+        formData.append("lastName",profile.lastName);
+         formData.append("file", profile.fileToUpload);
         return this.authHttp
             .post(this.profileUrl + "/updateprofile", formData)
             .toPromise()
             .then(response => response.json() as userprofile[])
             .catch(this.handleError);
 
-    }*/
+    }
     /*---------------------------------------------Sub Arrays------------------------------------------------*/
     addAddress(address: address[]) {
         return this.authHttp

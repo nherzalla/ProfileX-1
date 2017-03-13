@@ -11,6 +11,9 @@ import { userprofile } from '../../models/userprofile.model';
 import { address } from "../../models/address.model";
 import { education } from '../../models/education.model';
 import { experience } from '../../models/experience.model';
+import { profile } from '../../models/profile.model';
+
+
 import { AddressComponent } from '../settings/address.component';
 import { EducationComponent } from '../settings/education.component';
 
@@ -30,10 +33,13 @@ import { classToPlain } from "class-transformer";
 export class SettingsComponent {
 
     userprofile: userprofile = new userprofile();
+    profile : profile = new profile();
     profileInfoform: FormGroup;
     addresses: address[];
     educations: education[];
     experiences: experience[];
+    firstName : string;
+    lastName : string;
     @ViewChild("fileInput") fileInput: any;
 
 
@@ -50,6 +56,9 @@ export class SettingsComponent {
                 this.getData(response)
             );
 
+            this.firstName = this.userprofile.firstName;
+            this.lastName = this.userprofile.lastName;
+
     }
     getData(res: any) {
         if (res.length == 0) {
@@ -65,19 +74,22 @@ export class SettingsComponent {
         }
     }
 
-    saveprofileInfo(profileInfoform: NgForm) {
+    saveprofileInfo(profileInfoform: NgForm) 
+    {
+        this.profile.firstName = this.userprofile.firstName;
+        this.profile.lastName = this.userprofile.lastName;
+
         
-     /* let fi = this.fileInput.nativeElement;
-        var fileToUpload = null;
+     let fi = this.fileInput.nativeElement;
         if (fi.files && fi.files[0]) 
         {
-            fileToUpload = fi.files[0];
+             this.profile.fileToUpload = fi.files[0];
         }
-        this.profileservice.updateProfile(this.userprofile.firstName,this.userprofile.lastName, fileToUpload)
+        this.profileservice.updateProfile(this.profile)
                 .then(response =>
                     //this.getData(response)
                     console.log(response)
-                );*/
+                );
     }
 
     addAddress(event: any) {

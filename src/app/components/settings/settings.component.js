@@ -16,6 +16,7 @@ var userprofile_model_1 = require('../../models/userprofile.model');
 var address_model_1 = require("../../models/address.model");
 var education_model_1 = require('../../models/education.model');
 var experience_model_1 = require('../../models/experience.model');
+var profile_model_1 = require('../../models/profile.model');
 ///declare var swal: any;
 var SettingsComponent = (function () {
     function SettingsComponent(auth, profileservice, formBuilder) {
@@ -24,6 +25,7 @@ var SettingsComponent = (function () {
         this.profileservice = profileservice;
         this.formBuilder = formBuilder;
         this.userprofile = new userprofile_model_1.userprofile();
+        this.profile = new profile_model_1.profile();
         this.profileInfoform = this.formBuilder.group({
             firstName: ['', forms_1.Validators.required],
             lastName: ['', forms_1.Validators.required]
@@ -32,6 +34,8 @@ var SettingsComponent = (function () {
             .then(function (response) {
             return _this.getData(response);
         });
+        this.firstName = this.userprofile.firstName;
+        this.lastName = this.userprofile.lastName;
     }
     SettingsComponent.prototype.getData = function (res) {
         if (res.length == 0) {
@@ -47,17 +51,17 @@ var SettingsComponent = (function () {
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
-        /* let fi = this.fileInput.nativeElement;
-           var fileToUpload = null;
-           if (fi.files && fi.files[0])
-           {
-               fileToUpload = fi.files[0];
-           }
-           this.profileservice.updateProfile(this.userprofile.firstName,this.userprofile.lastName, fileToUpload)
-                   .then(response =>
-                       //this.getData(response)
-                       console.log(response)
-                   );*/
+        this.profile.firstName = this.userprofile.firstName;
+        this.profile.lastName = this.userprofile.lastName;
+        var fi = this.fileInput.nativeElement;
+        if (fi.files && fi.files[0]) {
+            this.profile.fileToUpload = fi.files[0];
+        }
+        this.profileservice.updateProfile(this.profile)
+            .then(function (response) {
+            //this.getData(response)
+            return console.log(response);
+        });
     };
     SettingsComponent.prototype.addAddress = function (event) {
         event.preventDefault();
