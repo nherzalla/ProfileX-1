@@ -96,6 +96,7 @@ export class SettingsComponent {
         this.profileservice.updateProfile(this.profile)
                 .then(response =>
                     this.getData(response)
+                    
                 );
 
 
