@@ -23,7 +23,7 @@ import { plainToClass } from "class-transformer";
 import { deserialize } from "class-transformer";
 import { classToPlain } from "class-transformer";
 
-///declare var swal: any;
+declare var swal: any;
 
 @Component({
     moduleId: module.id,
@@ -77,7 +77,14 @@ export class SettingsComponent {
 
     saveprofileInfo(profileInfoform: NgForm) 
     {
-        this.profile.firstName = this.userprofile.firstName;
+
+        swal(
+            'Saved!',
+            'Your profile image and basic information has been saved.',
+            'success'
+        )
+ 
+      this.profile.firstName = this.userprofile.firstName;
         this.profile.lastName = this.userprofile.lastName;
 
         
@@ -90,6 +97,9 @@ export class SettingsComponent {
                 .then(response =>
                     this.getData(response)
                 );
+
+
+         
     }
 
     addAddress(event: any) {

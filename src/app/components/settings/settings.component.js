@@ -17,7 +17,6 @@ var address_model_1 = require("../../models/address.model");
 var education_model_1 = require('../../models/education.model');
 var experience_model_1 = require('../../models/experience.model');
 var profile_model_1 = require('../../models/profile.model');
-///declare var swal: any;
 var SettingsComponent = (function () {
     function SettingsComponent(auth, profileservice, formBuilder) {
         var _this = this;
@@ -53,6 +52,7 @@ var SettingsComponent = (function () {
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
         var _this = this;
+        swal('Saved!', 'Your profile image and basic information has been saved.', 'success');
         this.profile.firstName = this.userprofile.firstName;
         this.profile.lastName = this.userprofile.lastName;
         var fi = this.fileInput.nativeElement;
