@@ -45,12 +45,14 @@ var SettingsComponent = (function () {
             this.userprofile = new userprofile_model_1.userprofile();
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
+            this.userprofile.profileImageURL = res.profileImageURL;
             this.addresses = res.address;
             this.educations = res.education;
             this.experiences = res.experience;
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
+        var _this = this;
         this.profile.firstName = this.userprofile.firstName;
         this.profile.lastName = this.userprofile.lastName;
         var fi = this.fileInput.nativeElement;
@@ -59,8 +61,7 @@ var SettingsComponent = (function () {
         }
         this.profileservice.updateProfile(this.profile)
             .then(function (response) {
-            //this.getData(response)
-            return console.log(response);
+            return _this.getData(response);
         });
     };
     SettingsComponent.prototype.addAddress = function (event) {

@@ -68,6 +68,7 @@ export class SettingsComponent {
             this.userprofile = new userprofile();
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
+            this.userprofile.profileImageURL=res.profileImageURL;
             this.addresses = res.address;
             this.educations = res.education;
             this.experiences = res.experience;
@@ -87,8 +88,7 @@ export class SettingsComponent {
         }
         this.profileservice.updateProfile(this.profile)
                 .then(response =>
-                    //this.getData(response)
-                    console.log(response)
+                    this.getData(response)
                 );
     }
 

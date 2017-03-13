@@ -20,11 +20,16 @@
                             <form [formGroup]="profileInfoform" (submit)="saveprofileInfo(profileInfoform)" novalidate enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Picture</label>
-                                    <input type="file" #fileInput data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline" data-buttontext="Upload new picture"
-                                        data-iconname="fa fa-upload mr" class="form-control filestyle" id="filestyle-0" tabindex="-1"
-                                        style="position: absolute; clip: rect(0px 0px 0px 0px);">
-                                    <div class="bootstrap-filestyle input-group"><span class="group-span-filestyle " tabindex="0"><label for="filestyle-0" class="btn btn-default "><span class="icon-span-filestyle fa fa-upload mr"></span>                                        <span class="buttonText">Upload new picture</span></label>
+                                    <input type="file" #fileInput data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline"
+                                        data-buttontext="Upload new picture" data-iconname="fa fa-upload mr" class="form-control filestyle"
+                                        id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
+                                    <div class="bootstrap-filestyle input-group"><span class="group-span-filestyle " tabindex="0"><label for="filestyle-0" class="btn btn-default "><span class="icon-span-filestyle fa fa-upload mr"></span>
+                                        <span class="buttonText">Upload new picture</span></label>
                                         </span>
+
+                                    </div>
+                                    <div align="right">
+                                        <img src="{{userprofile.profileImageURL}}" alt="Image" class="img-thumbnail img-circle thumb128">
                                     </div>
                                 </div>
                                 <div class="form-group">
