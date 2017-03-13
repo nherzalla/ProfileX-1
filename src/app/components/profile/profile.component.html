@@ -1,8 +1,8 @@
-<p *ngIf="initialized">{{ userprofile.firstName }}</p>
-<br>
-
-<!--<img src="https://testuserprofile.blob.core.windows.net/testnabeelcon/myblob225"/>-->
-
-
-<img src="{{userprofile.profileImageURL}}" alt="Image" class="img-thumbnail img-circle thumb128">
-
+<div style="background-image: url(img/profile-bg.jpg)" class="bg-cover">
+    <div class="p-xl text-center text-white">
+        <img src="{{userprofile.profileImageURL}}" alt="Image" class="img-thumbnail img-circle thumb128">
+        <h3 class="m0">Ted Berry</h3>
+        <p>Profile Summury Title to be added</p>
+        <p>Profile Summury.</p>
+    </div>
+</div>
