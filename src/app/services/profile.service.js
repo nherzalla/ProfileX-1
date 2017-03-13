@@ -27,20 +27,6 @@ var profileService = (function () {
             .then(function (response) { return response.text; })
             .catch(this.handleError);
     };
-    profileService.prototype.getProfileImage = function () {
-        return this.authHttp
-            .get(this.profileUrl + "/getprofileimage")
-            .toPromise()
-            .then(function (res) {
-            //this.logger.debug(res);
-            console.log('1');
-            if (res.headers.get("Content-Type").startsWith("image/")) {
-                return res;
-            }
-            return res.json();
-        })
-            .catch(this.handleError);
-    };
     profileService.prototype.updateProfile = function (profile) {
         var formData = new FormData();
         formData.append("firstName", profile.firstName);
@@ -143,7 +129,7 @@ var profileService = (function () {
     };
     // private handleError(error: any): Promise<any> 
     profileService.prototype.handleError = function (error) {
-        console.error('An error occurred', error);
+        console.error('An error occurred ', error);
         return Promise.reject(error.message || error);
     };
     profileService = __decorate([

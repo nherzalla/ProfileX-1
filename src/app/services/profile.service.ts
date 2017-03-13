@@ -36,23 +36,6 @@ export class profileService  {
             .catch(this.handleError);
     }
 
-    getProfileImage()
-    {
-        return this.authHttp
-            .get(this.profileUrl+ "/getprofileimage",)
-            .toPromise()
-            .then(res =>{
-                    //this.logger.debug(res);
-                    console.log('1');
-                if(res.headers.get("Content-Type").startsWith("image/"))
-                {
-                    return res;
-                }
-                return res.json();
-            })
-            .catch(this.handleError);
-    }
-
     updateProfile(profile:profile) 
     {
        let formData = new FormData();
@@ -166,7 +149,7 @@ export class profileService  {
 
     // private handleError(error: any): Promise<any> 
     private handleError(error: any) {
-        console.error('An error occurred', error);
+        console.error('An error occurred ' ,  error);
         return Promise.reject(error.message || error);
     }
     //Private methods.......................................................................

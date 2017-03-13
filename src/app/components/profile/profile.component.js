@@ -24,51 +24,11 @@ var ProfileComponent = (function () {
         this.userprofile1 = new userprofile_model_1.userprofile();
         this.sanitizer = sanitizer;
         this.profile = JSON.parse(localStorage.getItem('profile'));
-        /*    this.profileservice.verifyProfile()
-                     .map(res => res.json())
-                     .map(res => plainToClass(userprofile, res))
-                     .subscribe(user =>
-                     {
-                         this.userprofile = user
-                        //console.log(this.userprofile)
-                     })
-                 ;
-     */
         this.profileservice.verifyProfilePromise()
             .then(function (response) {
             return _this.getData(response);
         });
-        this.profileservice.getProfileImage()
-            .then(function (response) {
-            return _this.getImageData(response);
-        });
-        //testing image download
     }
-    ProfileComponent.prototype.getImageData = function (res) {
-        var blob = new Blob([new Uint8Array(res._body)], {
-            type: res.headers.get("Content-Type")
-        });
-        var urlCreator = window.URL;
-        var url = urlCreator.createObjectURL(blob);
-        //console.log(url);
-        //  this.trustedImageUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(url);
-        this.src = url;
-        //let binary = new Uint8Array(res);
-        //let blob = new Blob([binary],{type: 'image/jpeg'});
-        //  let myBlob: Blob = new Blob([res], {type: 'image/jpeg'}); // replace the type by whatever type is your response
-        //var fileURL = URL.createObjectURL(blob);
-        //  console.log(fileURL);
-        //this.userprofile.imageURL
-        //this.trustedImageUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(fileURL);// instance.sanitization.bypassSecurityTrustStylefileURL;
-        // console.log(this.trustedImageUrl);
-        // Cross your fingers at this point and pray whatever you're used to pray
-        //  console.log(fileURL);
-        // this.userprofile.imageURL = fileURL;
-        // window.open(fileURL);
-        /*console.log(res);
-         this.userprofile = new userprofile();
-         this.userprofile.imageURL = res;*/
-    };
     ProfileComponent.prototype.getData = function (res) {
         if (res.length == 0) {
             console.log("object is empty");
@@ -82,6 +42,7 @@ var ProfileComponent = (function () {
             this.userprofile.address = res.address;
             this.userprofile.education = res.education;
             this.userprofile.experience = res.experience;
+            this.userprofile.profileImageURL = res.profileImageURL;
             //  this.userprofile1=  plainToClass(userprofile,res);
             console.log(this.userprofile);
         }
