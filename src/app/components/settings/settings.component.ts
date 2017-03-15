@@ -12,10 +12,12 @@ import { address } from "../../models/address.model";
 import { education } from '../../models/education.model';
 import { experience } from '../../models/experience.model';
 import { profile } from '../../models/profile.model';
+import {portfolio} from '../../models/portfolio.model';
 
 
 import { AddressComponent } from '../settings/address.component';
 import { EducationComponent } from '../settings/education.component';
+import {PortfolioComponent} from '../settings/portfolio.component';
 
 
 
@@ -38,6 +40,7 @@ export class SettingsComponent {
     addresses: address[];
     educations: education[];
     experiences: experience[];
+    portfolios: portfolio[];
     firstName : string;
     lastName : string;
     @ViewChild("fileInput") fileInput: any;
@@ -64,7 +67,10 @@ export class SettingsComponent {
         if (res.length == 0) {
             console.log("object is empty");
         }
-        else {
+        else 
+        {
+            console.log(res);
+
             this.userprofile = new userprofile();
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
@@ -72,6 +78,7 @@ export class SettingsComponent {
             this.addresses = res.address;
             this.educations = res.education;
             this.experiences = res.experience;
+            this.portfolios = res.portfolio;
         }
     }
 
@@ -121,6 +128,13 @@ export class SettingsComponent {
         var emptyexperience = new experience();
         this.experiences.push(emptyexperience);
         this.experiences.reverse();
+    }
+    addPortfolio(event:any)
+    {
+       event.preventDefault();
+       var emptyportfolio = new portfolio();
+       this.portfolios.push(emptyportfolio);
+       this.portfolios.reverse();  
     }
 
     deleteAddress(event: any, index: number, address: address) {

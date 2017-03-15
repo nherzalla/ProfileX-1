@@ -13,6 +13,7 @@ import { address } from '../models/address.model';
 import { education } from '../models/education.model';
 import { experience } from '../models/experience.model';
 import {profile} from '../models/profile.model';
+import {portfolio} from '../models/portfolio.model';
 
 @Injectable()
 
@@ -110,6 +111,14 @@ export class profileService  {
     deleteExperience(experience: experience) {
         return this.authHttp
             .post(this.profileUrl + "/deleteexperience", experience)
+            .toPromise()
+            .then(response => response.json() as userprofile[])
+            .catch(this.handleError);
+    }
+    addPortfolio(portfolio:portfolio[])
+    {
+        return this.authHttp
+            .post(this.profileUrl + "/insertporfolio", portfolio)
             .toPromise()
             .then(response => response.json() as userprofile[])
             .catch(this.handleError);

@@ -102,6 +102,13 @@ var profileService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    profileService.prototype.addPortfolio = function (portfolio) {
+        return this.authHttp
+            .post(this.profileUrl + "/insertporfolio", portfolio)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     /*---------------------------------------------Sub Arrays---------------------------------------------*/
     profileService.prototype.verifyProfilePromise = function () {
         return this.authHttp

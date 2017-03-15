@@ -7,7 +7,8 @@
                     <a href="#tabSetting2" data-toggle="tab" class="list-group-item">Addresses</a>
                     <a href="#tabSetting3" data-toggle="tab" class="list-group-item">Education</a>
                     <a href="#tabSetting4" data-toggle="tab" class="list-group-item">Experience</a>
-                    <a href="#tabSetting5" data-toggle="tab" class="list-group-item">Applications</a>
+                    <a href="#tabSetting5" data-toggle="tab" class="list-group-item">Portfolio</a>
+                    <a href="#tabSetting6" data-toggle="tab" class="list-group-item">Applications</a>
                 </div>
             </div>
         </div>
@@ -111,6 +112,24 @@
                     </div>
                 </div>
                 <div id="tabSetting5" class="tab-pane">
+                    <div class="panel b">
+                        <div class="panel-heading bg-gray-lighter text-bold">Portfolio</div>
+                        <div class="panel-body">
+                           <button type="submit" class="btn btn-success col-md-12" (click)="addPortfolio($event)">Add Portfolio</button>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-body" *ngFor="let portfolio of portfolios; let i = index">
+                                <div>
+                                  <!--  <a href="#" class="btn btn-danger col-md-12" (click)="deleteExperience($event,i,experience)">Delete</a>-->
+                                    <portfolio [portfolio]="portfolio">
+                                    </portfolio>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabSetting6" class="tab-pane">
                     <div class="panel b">
                         <div class="panel-heading bg-gray-lighter text-bold">Applications</div>
                         <div class="panel-body">

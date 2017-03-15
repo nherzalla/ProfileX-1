@@ -17,6 +17,7 @@ var address_model_1 = require("../../models/address.model");
 var education_model_1 = require('../../models/education.model');
 var experience_model_1 = require('../../models/experience.model');
 var profile_model_1 = require('../../models/profile.model');
+var portfolio_model_1 = require('../../models/portfolio.model');
 var SettingsComponent = (function () {
     function SettingsComponent(auth, profileservice, formBuilder) {
         var _this = this;
@@ -41,6 +42,7 @@ var SettingsComponent = (function () {
             console.log("object is empty");
         }
         else {
+            console.log(res);
             this.userprofile = new userprofile_model_1.userprofile();
             this.userprofile.firstName = res.firstName;
             this.userprofile.lastName = res.lastName;
@@ -48,6 +50,7 @@ var SettingsComponent = (function () {
             this.addresses = res.address;
             this.educations = res.education;
             this.experiences = res.experience;
+            this.portfolios = res.portfolio;
         }
     };
     SettingsComponent.prototype.saveprofileInfo = function (profileInfoform) {
@@ -81,6 +84,12 @@ var SettingsComponent = (function () {
         var emptyexperience = new experience_model_1.experience();
         this.experiences.push(emptyexperience);
         this.experiences.reverse();
+    };
+    SettingsComponent.prototype.addPortfolio = function (event) {
+        event.preventDefault();
+        var emptyportfolio = new portfolio_model_1.portfolio();
+        this.portfolios.push(emptyportfolio);
+        this.portfolios.reverse();
     };
     SettingsComponent.prototype.deleteAddress = function (event, index, address) {
         event.preventDefault();
