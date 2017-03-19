@@ -4,4 +4,5 @@ export class portfolio {
     public portfolioURL:string;
     public portfolioImageURL:string;
     public portfolioSummary:string;
+    public fileToUpload:any;
 }

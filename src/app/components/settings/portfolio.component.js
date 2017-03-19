@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var profile_service_1 = require('../../services/profile.service');
 var auth_service_1 = require('../../services/auth.service');
+var portfolio_model_1 = require('../../models/portfolio.model');
 //declare var swal: any;
 var PortfolioComponent = (function () {
     function PortfolioComponent(formBuilder, auth, profileservice) {
@@ -19,13 +20,25 @@ var PortfolioComponent = (function () {
         this.auth = auth;
         this.profileservice = profileservice;
         this.portfolioform = this.formBuilder.group({
-            portfolioURL: ['', forms_1.Validators.required],
-            portfolioImageURL: ['', forms_1.Validators.required],
-            portfolioSummary: ['', forms_1.Validators.required]
+            portfolioURL: new forms_1.FormControl(),
+            portfolioImageURL: new forms_1.FormControl(),
+            portfolioSummary: new forms_1.FormControl(),
         });
     }
-    PortfolioComponent.prototype.insertexperience = function (add) {
+    PortfolioComponent.prototype.inserteporfolio = function (add) {
         //   console.log(this.experience);
+        /* this.profileservice.addPortfolio(this.portfolio)
+              .then(response =>
+                  //this.getData(response)
+                  console.log(response)
+              );*/
+    };
+    PortfolioComponent.prototype.onSubmit = function (portfolioform) {
+        console.log(this.portfolio.portfolioSummary);
+        var fi = this.fileupload.nativeElement;
+        if (fi.files && fi.files[0]) {
+            this.portfolio.fileToUpload = fi.files[0];
+        }
         this.profileservice.addPortfolio(this.portfolio)
             .then(function (response) {
             //this.getData(response)
@@ -34,8 +47,12 @@ var PortfolioComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Array)
+        __metadata('design:type', portfolio_model_1.portfolio)
     ], PortfolioComponent.prototype, "portfolio", void 0);
+    __decorate([
+        core_1.ViewChild("fileUpload"), 
+        __metadata('design:type', Object)
+    ], PortfolioComponent.prototype, "fileupload", void 0);
     PortfolioComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

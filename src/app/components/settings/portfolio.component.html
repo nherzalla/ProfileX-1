@@ -4,21 +4,32 @@
     </div>
     <div class="panel-body">
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="portfolioform">
+        <form (ngSubmit)="onSubmit(portfolioform)" [formGroup]="portfolioform" novalidate enctype="multipart/form-data">
 
-           
+            <div>
+                <input type="file" #fileUpload data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline"
+                    data-buttontext="Upload new picture" data-iconname="fa fa-upload mr" class="form-control filestyle" id="filestyle-2"
+                    tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
+                <div class="bootstrap-filestyle input-group"><span class="group-span-filestyle " tabindex="0"><label for="filestyle-2" class="btn btn-default "><span class="icon-span-filestyle fa fa-upload mr"></span>
+                    <span class="buttonText">Upload new picture</span></label>
+                    </span>
+
+                </div>
+            </div>
             <div class="form-group">
                 <label>portfolio Summary</label>
-               <input type="text" class="form-control" [formControl]="portfolioform.controls.portfolioSummary" [(ngModel)]="portfolio.portfolioSummary">
+                <input type="text" class="form-control" [formControl]="portfolioform.controls.portfolioSummary" [(ngModel)]="portfolio.portfolioSummary">
             </div>
             <div class="form-group">
                 <label>Portfolio External URL</label>
-               <input type="text" class="form-control" [formControl]="portfolioform.controls.portfolioURL" [(ngModel)]="portfolio.portfolioURL">
-            
+                <input type="text" class="form-control" [formControl]="portfolioform.controls.portfolioURL" [(ngModel)]="portfolio.portfolioURL">
+
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-info" *ngIf="portfolio.UniqId">Update Education</button>
-                <button type="button" (click)="inserteporfolio($event)" class="btn btn-info" *ngIf="!portfolio.UniqId">Insert Portfolio</button>
+                <button type="submit" class="btn btn-info">Submit</button>
+
+                <!--<button type="submit" class="btn btn-info" *ngIf="portfolio.UniqId">Update Education</button>-->
+                <!-- <button type="button" (click)="inserteporfolio($event)" class="btn btn-info" *ngIf="!portfolio.UniqId">Insert Portfolio</button>-->
             </div>
 
         </form>

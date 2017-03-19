@@ -105,9 +105,6 @@ export class SettingsComponent {
                     this.getData(response)
                     
                 );
-
-
-         
     }
 
     addAddress(event: any) {

@@ -1,12 +1,16 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl, NgForm, FormArray } from '@angular/forms';
- 
+import { BrowserModule } from '@angular/platform-browser';
+
+
+
 
 
 
 import { profileService } from '../../services/profile.service';
 import { Auth } from '../../services/auth.service';
-import {portfolio} from '../../models/portfolio.model';
+import { portfolio } from '../../models/portfolio.model';
+
 
 
 //declare var swal: any;
@@ -18,34 +22,44 @@ import {portfolio} from '../../models/portfolio.model';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioComponent {
-    @Input() portfolio: portfolio[]
+    @Input() portfolio: portfolio;
     public portfolioform: FormGroup;
 
-  
-    
 
+    @ViewChild("fileUpload") fileupload: any;
 
-
-    constructor(private formBuilder: FormBuilder, private auth: Auth, private profileservice: profileService) 
-    {
+    constructor(private formBuilder: FormBuilder, private auth: Auth, private profileservice: profileService) {
         this.portfolioform = this.formBuilder.group({
-            portfolioURL: ['', Validators.required],
-            portfolioImageURL: ['', Validators.required],
-            portfolioSummary: ['', Validators.required]
+            portfolioURL: new FormControl(),//['', Validators.required],
+            portfolioImageURL: new FormControl(),//['', Validators.required],
+            portfolioSummary: new FormControl(),//['', Validators.required]
         });
     }
-   
-    insertexperience(add: any) {
-    
-  //   console.log(this.experience);
-       this.profileservice.addPortfolio(this.portfolio)
+
+    inserteporfolio(add: any) {
+
+
+        //   console.log(this.experience);
+        /* this.profileservice.addPortfolio(this.portfolio)
+              .then(response =>
+                  //this.getData(response)
+                  console.log(response)
+              );*/
+    }
+    onSubmit(portfolioform: NgForm) {
+        console.log(this.portfolio.portfolioSummary);
+
+        let fi = this.fileupload.nativeElement;
+        if (fi.files && fi.files[0]) {
+            this.portfolio.fileToUpload = fi.files[0];
+        }
+
+        this.profileservice.addPortfolio(this.portfolio)
             .then(response =>
                 //this.getData(response)
                 console.log(response)
             );
-    }
-    
-   
 
+    }
 
 }

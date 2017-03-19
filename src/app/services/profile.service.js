@@ -103,8 +103,12 @@ var profileService = (function () {
             .catch(this.handleError);
     };
     profileService.prototype.addPortfolio = function (portfolio) {
+        var formData = new FormData();
+        formData.append("portfolioURL", portfolio.portfolioURL);
+        formData.append("portfolioSummary", portfolio.portfolioSummary);
+        formData.append("file", portfolio.fileToUpload);
         return this.authHttp
-            .post(this.profileUrl + "/insertporfolio", portfolio)
+            .post(this.profileUrl + "/insertporfolio", formData)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
